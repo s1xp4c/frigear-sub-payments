@@ -1,6 +1,6 @@
 {
-  "name": "nextjs-subscription-payments",
-  "version": "0.0.0",
+  "name": "frigear-app",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",

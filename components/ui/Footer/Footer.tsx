@@ -1,7 +1,6 @@
-import Link from 'next/link';
-
-import Logo from '@/components/icons/Logo';
-import GitHub from '@/components/icons/GitHub';
+import GitHub from "@/components/icons/GitHub";
+import Logo from "@/components/icons/Logo";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -15,7 +14,7 @@ export default function Footer() {
             <span className="mr-2 border rounded-full border-zinc-700">
               <Logo />
             </span>
-            <span>ACME</span>
+            <span>FRIGEAR</span>
           </Link>
         </div>
         <div className="col-span-1 lg:col-span-2">
@@ -25,7 +24,7 @@ export default function Footer() {
                 href="/"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
               >
-                Home
+                Hjem
               </Link>
             </li>
             <li className="py-3 md:py-0 md:pb-4">
@@ -33,7 +32,7 @@ export default function Footer() {
                 href="/"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
               >
-                About
+                Info
               </Link>
             </li>
             <li className="py-3 md:py-0 md:pb-4">
@@ -41,15 +40,7 @@ export default function Footer() {
                 href="/"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
               >
-                Careers
-              </Link>
-            </li>
-            <li className="py-3 md:py-0 md:pb-4">
-              <Link
-                href="/"
-                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
-              >
-                Blog
+                Historie
               </Link>
             </li>
           </ul>
@@ -58,7 +49,7 @@ export default function Footer() {
           <ul className="flex flex-col flex-initial md:flex-1">
             <li className="py-3 md:py-0 md:pb-4">
               <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">
-                LEGAL
+                Jura
               </p>
             </li>
             <li className="py-3 md:py-0 md:pb-4">
@@ -66,7 +57,7 @@ export default function Footer() {
                 href="/"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
               >
-                Privacy Policy
+                GDPR
               </Link>
             </li>
             <li className="py-3 md:py-0 md:pb-4">
@@ -74,7 +65,7 @@ export default function Footer() {
                 href="/"
                 className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
               >
-                Terms of Use
+                Brugerpolitik
               </Link>
             </li>
           </ul>
@@ -83,7 +74,7 @@ export default function Footer() {
           <div className="flex items-center h-10 space-x-6">
             <a
               aria-label="Github Repository"
-              href="https://github.com/vercel/nextjs-subscription-payments"
+              href="https://github.com/s1xp4c/frigear-sub-payments"
             >
               <GitHub />
             </a>
@@ -92,19 +83,21 @@ export default function Footer() {
       </div>
       <div className="flex flex-col items-center justify-between py-12 space-y-4 md:flex-row bg-zinc-900">
         <div>
-          <span>
-            &copy; {new Date().getFullYear()} ACME, Inc. All rights reserved.
-          </span>
+          <span>&copy; {new Date().getFullYear()} Foreningen Frigear</span>
         </div>
         <div className="flex items-center">
-          <span className="text-white">Crafted by</span>
-          <a href="https://vercel.com" aria-label="Vercel.com Link">
+          <span className="text-white">App udviklet af</span>
+          <a
+            href="https://block-folio.netlify.app/"
+            aria-label="Portfolio link Link"
+          >
             <img
-              src="/vercel.svg"
-              alt="Vercel.com Logo"
-              className="inline-block h-6 ml-4 text-white"
+              src="/six_logo.png"
+              alt="Blockstarter Logo"
+              className="inline-block h-6 mx-3 text-white"
             />
           </a>
+          <span className="text-white">Morten Six</span>
         </div>
       </div>
     </footer>
