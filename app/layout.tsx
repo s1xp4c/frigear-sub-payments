@@ -1,17 +1,18 @@
-import SupabaseProvider from './supabase-provider';
-import Footer from '@/components/ui/Footer';
-import Navbar from '@/components/ui/Navbar';
-import { PropsWithChildren } from 'react';
-import 'styles/main.css';
+import SupabaseProvider from "./supabase-provider";
+import Footer from "@/components/ui/Footer";
+import Navbar from "@/components/ui/Navbar";
+import { PropsWithChildren } from "react";
+import "styles/main.css";
 
 const meta = {
-  title: 'Next.js Subscription Starter',
-  description: 'Brought to you by Vercel, Stripe, and Supabase.',
-  cardImage: '/og.png',
-  robots: 'follow, index',
-  favicon: '/favicon.ico',
-  url: 'https://subscription-starter.vercel.app',
-  type: 'website'
+  title: "Foreningen Frigear",
+  description:
+    "Frigear appen for medlemmer og nysgerrige på vores Non-profit projekter",
+  cardImage: "/logo_with_rf_bgr.png",
+  robots: "follow, index",
+  favicon: "/favicon.ico",
+  url: "https://frigear-sub-payments.vercel.app/",
+  type: "website",
 };
 
 export const metadata = {
@@ -28,21 +29,21 @@ export const metadata = {
     description: meta.description,
     cardImage: meta.cardImage,
     type: meta.type,
-    site_name: meta.title
+    site_name: meta.title,
   },
   twitter: {
-    card: 'summary_large_image',
-    site: '@vercel',
+    card: "summary_large_image",
+    site: "@vercel",
     title: meta.title,
     description: meta.description,
-    cardImage: meta.cardImage
-  }
+    cardImage: meta.cardImage,
+  },
 };
 
 export default function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages
-  children
+  children,
 }: PropsWithChildren) {
   return (
     <html lang="en">

@@ -94,8 +94,8 @@ export default function Footer() {
           >
             <Image
               src="/six_logo.png"
-              width={6}
-              height={6}
+              width={25}
+              height={25}
               alt="Blockstarter Logo"
               className="inline-block mx-3 text-white"
             />

@@ -1,66 +1,66 @@
-import ManageSubscriptionButton from './ManageSubscriptionButton';
+import ManageSubscriptionButton from "./ManageSubscriptionButton";
 import {
   getSession,
   getUserDetails,
-  getSubscription
-} from '@/app/supabase-server';
-import Button from '@/components/ui/Button';
-import { Database } from '@/types_db';
-import { createServerActionClient } from '@supabase/auth-helpers-nextjs';
-import { revalidatePath } from 'next/cache';
-import { cookies } from 'next/headers';
-import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { ReactNode } from 'react';
+  getSubscription,
+} from "@/app/supabase-server";
+import Button from "@/components/ui/Button";
+import { Database } from "@/types_db";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { ReactNode } from "react";
 
 export default async function Account() {
   const [session, userDetails, subscription] = await Promise.all([
     getSession(),
     getUserDetails(),
-    getSubscription()
+    getSubscription(),
   ]);
 
   const user = session?.user;
 
   if (!session) {
-    return redirect('/signin');
+    return redirect("/signin");
   }
 
   const subscriptionPrice =
     subscription &&
-    new Intl.NumberFormat('en-US', {
-      style: 'currency',
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
       currency: subscription?.prices?.currency!,
-      minimumFractionDigits: 0
+      minimumFractionDigits: 0,
     }).format((subscription?.prices?.unit_amount || 0) / 100);
 
   const updateName = async (formData: FormData) => {
-    'use server';
+    "use server";
 
-    const newName = formData.get('name') as string;
+    const newName = formData.get("name") as string;
     const supabase = createServerActionClient<Database>({ cookies });
     const session = await getSession();
     const user = session?.user;
     const { error } = await supabase
-      .from('users')
+      .from("users")
       .update({ full_name: newName })
-      .eq('id', user?.id);
+      .eq("id", user?.id);
     if (error) {
       console.log(error);
     }
-    revalidatePath('/account');
+    revalidatePath("/account");
   };
 
   const updateEmail = async (formData: FormData) => {
-    'use server';
+    "use server";
 
-    const newEmail = formData.get('email') as string;
+    const newEmail = formData.get("email") as string;
     const supabase = createServerActionClient<Database>({ cookies });
     const { error } = await supabase.auth.updateUser({ email: newEmail });
     if (error) {
       console.log(error);
     }
-    revalidatePath('/account');
+    revalidatePath("/account");
   };
 
   return (
@@ -68,20 +68,20 @@ export default async function Account() {
       <div className="max-w-6xl px-4 py-8 mx-auto sm:px-6 sm:pt-24 lg:px-8">
         <div className="sm:align-center sm:flex sm:flex-col">
           <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
-            Account
+            Konto
           </h1>
           <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-            We partnered with Stripe for a simplified billing.
+            Se og ret dine kontoindstillinger her.
           </p>
         </div>
       </div>
       <div className="p-4">
         <Card
-          title="Your Plan"
+          title="Dit medlemskab"
           description={
             subscription
-              ? `You are currently on the ${subscription?.prices?.products?.name} plan.`
-              : 'You are not currently subscribed to any plan.'
+              ? `Du er pt. tilknyttet ${subscription?.prices?.products?.name}.`
+              : "Du har ikke valgt et medlemskab af Frigeear endnu."
           }
           footer={<ManageSubscriptionButton session={session} />}
         >
@@ -89,16 +89,16 @@ export default async function Account() {
             {subscription ? (
               `${subscriptionPrice}/${subscription?.prices?.interval}`
             ) : (
-              <Link href="/">Choose your plan</Link>
+              <Link href="/">Vælg medlemskab</Link>
             )}
           </div>
         </Card>
         <Card
-          title="Your Name"
-          description="Please enter your full name, or a display name you are comfortable with."
+          title="Dit navn"
+          description="Shriv dit fødenavn, eller det det navn du føler dig komfortabel med vi kalder dig."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-              <p className="pb-4 sm:pb-0">64 characters maximum</p>
+              <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
               <Button
                 variant="slim"
                 type="submit"
@@ -106,7 +106,7 @@ export default async function Account() {
                 disabled={true}
               >
                 {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
-                Update Name
+                Opdater navn
               </Button>
             </div>
           }
@@ -117,7 +117,7 @@ export default async function Account() {
                 type="text"
                 name="name"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                defaultValue={userDetails?.full_name ?? ''}
+                defaultValue={userDetails?.full_name ?? ""}
                 placeholder="Your name"
                 maxLength={64}
               />
@@ -125,12 +125,12 @@ export default async function Account() {
           </div>
         </Card>
         <Card
-          title="Your Email"
-          description="Please enter the email address you want to use to login."
+          title="Din e-mail"
+          description="Skriv din e-mail adresse du vil bruge til login."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">
-                We will email you to verify the change.
+                Vi sender dig en verifikations e-mail.
               </p>
               <Button
                 variant="slim"
@@ -139,7 +139,7 @@ export default async function Account() {
                 disabled={true}
               >
                 {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
-                Update Email
+                Opdater Email
               </Button>
             </div>
           }
@@ -150,7 +150,7 @@ export default async function Account() {
                 type="text"
                 name="email"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                defaultValue={user ? user.email : ''}
+                defaultValue={user ? user.email : ""}
                 placeholder="Your email"
                 maxLength={64}
               />
