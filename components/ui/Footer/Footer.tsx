@@ -21,12 +21,9 @@ export default function Footer() {
         <div className="col-span-1 lg:col-span-2">
           <ul className="flex flex-col flex-initial md:flex-1">
             <li className="py-3 md:py-0 md:pb-4">
-              <Link
-                href="/"
-                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
-              >
-                Hjem
-              </Link>
+              <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">
+                GENERELT
+              </p>
             </li>
             <li className="py-3 md:py-0 md:pb-4">
               <Link
@@ -50,7 +47,7 @@ export default function Footer() {
           <ul className="flex flex-col flex-initial md:flex-1">
             <li className="py-3 md:py-0 md:pb-4">
               <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">
-                Jura
+                JURIDISK
               </p>
             </li>
             <li className="py-3 md:py-0 md:pb-4">
