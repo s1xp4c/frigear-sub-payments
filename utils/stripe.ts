@@ -10,6 +10,7 @@ export const stripe = new Stripe(
     appInfo: {
       name: "Frigear",
       version: "0.1.0",
+      url: "https://frigear-sub-payments.vercel.app/",
     },
   }
 );

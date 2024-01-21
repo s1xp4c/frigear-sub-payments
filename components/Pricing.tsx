@@ -29,7 +29,7 @@ interface Props {
   subscription: SubscriptionWithProduct | null;
 }
 
-type BillingInterval = "lifetime" | "year" | "month";
+type BillingInterval = "quarter" | "year" | "month" | "life";
 
 export default function Pricing({
   session,
@@ -46,7 +46,7 @@ export default function Pricing({
   );
   const router = useRouter();
   const [billingInterval, setBillingInterval] =
-    useState<BillingInterval>("month");
+    useState<BillingInterval>("year");
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
 
   const handleCheckout = async (price: Price) => {
@@ -117,7 +117,7 @@ export default function Pricing({
               {products[0].prices?.map((price) => {
                 const priceString =
                   price.unit_amount &&
-                  new Intl.NumberFormat("en-US", {
+                  new Intl.NumberFormat("da-DK", {
                     style: "currency",
                     currency: price.currency!,
                     minimumFractionDigits: 0,
@@ -148,8 +148,8 @@ export default function Pricing({
                       >
                         {products[0].name ===
                         subscription?.prices?.products?.name
-                          ? "Manage"
-                          : "Subscribe"}
+                          ? "Skift"
+                          : "Tilmeld"}
                       </Button>
                     </div>
                   </div>
@@ -184,7 +184,20 @@ export default function Pricing({
                     : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
               >
-                Månedlig betaling
+                Månedlig
+              </button>
+            )}
+            {intervals.includes("quarter") && (
+              <button
+                onClick={() => setBillingInterval("quarter")}
+                type="button"
+                className={`${
+                  billingInterval === "quarter"
+                    ? "relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white"
+                    : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
+                } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
+              >
+                Månedlig
               </button>
             )}
             {intervals.includes("year") && (
@@ -197,7 +210,20 @@ export default function Pricing({
                     : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
               >
-                Årlig betaling
+                Årlig
+              </button>
+            )}
+            {intervals.includes("life") && (
+              <button
+                onClick={() => setBillingInterval("life")}
+                type="button"
+                className={`${
+                  billingInterval === "life"
+                    ? "relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white"
+                    : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
+                } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
+              >
+                Livstid
               </button>
             )}
           </div>
@@ -208,7 +234,7 @@ export default function Pricing({
               (price) => price.interval === billingInterval
             );
             if (!price) return null;
-            const priceString = new Intl.NumberFormat("en-US", {
+            const priceString = new Intl.NumberFormat("da-DK", {
               style: "currency",
               currency: price.currency!,
               minimumFractionDigits: 0,
@@ -221,7 +247,7 @@ export default function Pricing({
                   {
                     "border border-pink-500": subscription
                       ? product.name === subscription?.prices?.products?.name
-                      : product.name === "Freelancer",
+                      : product.name === "Medlemskab",
                   }
                 )}
               >
@@ -246,7 +272,7 @@ export default function Pricing({
                     onClick={() => handleCheckout(price)}
                     className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"
                   >
-                    {subscription ? "Manage" : "Subscribe"}
+                    {subscription ? "Skift" : "Tilmeld"}
                   </Button>
                 </div>
               </div>
