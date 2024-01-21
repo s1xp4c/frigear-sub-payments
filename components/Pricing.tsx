@@ -29,7 +29,7 @@ interface Props {
   subscription: SubscriptionWithProduct | null;
 }
 
-type BillingInterval = "month" | "quarter" | "year" | "life";
+type BillingInterval = "month" | "quarter" | "year";
 
 export default function Pricing({
   session,
@@ -169,10 +169,7 @@ export default function Pricing({
           <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
             Frigear medlemskab
           </h1>
-          {/* <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-            Start building for free, then add a site plan to go live. Account
-            plans unlock additional features.
-          </p> */}
+
           <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
             {intervals.includes("month") && (
               <button
@@ -187,17 +184,17 @@ export default function Pricing({
                 Månedlig
               </button>
             )}
-            {intervals.includes("quarter") && (
+            {intervals.includes("month") && (
               <button
-                onClick={() => setBillingInterval("quarter")}
+                onClick={() => setBillingInterval("month")}
                 type="button"
                 className={`${
-                  billingInterval === "quarter"
+                  billingInterval === "month"
                     ? "relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white"
                     : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
               >
-                Månedlig
+                Kvartals
               </button>
             )}
             {intervals.includes("year") && (
@@ -211,19 +208,6 @@ export default function Pricing({
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
               >
                 Årlig
-              </button>
-            )}
-            {intervals.includes("life") && (
-              <button
-                onClick={() => setBillingInterval("life")}
-                type="button"
-                className={`${
-                  billingInterval === "life"
-                    ? "relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white"
-                    : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
-                } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
-              >
-                Livstid
               </button>
             )}
           </div>
@@ -288,9 +272,44 @@ export default function Pricing({
 function LogoCloud() {
   return (
     <div>
-      <p className="mt-24 text-xs uppercase text-zinc-400 text-center font-bold tracking-[0.3em]">
-        Her kommer awesome stuff!!
+      <p className="mt-20 text-lg uppercase sm:text-2xl text-zinc-400 text-center font-bold tracking-[0.2em]">
+        <h3>Frigear Medlemsgoder og rettigheder</h3>
       </p>
+      <ul>
+        <li>
+          <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
+            - First in line til frivillig plads i Frigear projekter før ekstern
+            rekruttering.
+          </p>
+        </li>
+        <li>
+          <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
+            - Stemmeret ved generalforsamling
+          </p>
+        </li>
+        <li>
+          <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
+            - Mulighed for at foreslå og ansøge om midler eller frivillige til
+            interne Frigear projekter
+          </p>
+        </li>
+        <li>
+          <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
+            - Stille forslag til støtte af eksterne non-profit projekter og
+            foreninger.
+          </p>
+        </li>
+        <li>
+          <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
+            - Halv pris på Frigear merch
+          </p>
+        </li>
+        <li>
+          <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
+            - Adgang til Frigear appen
+          </p>
+        </li>
+      </ul>
     </div>
   );
 }

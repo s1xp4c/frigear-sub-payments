@@ -95,7 +95,7 @@ export default async function Account() {
         </Card>
         <Card
           title="Dit navn"
-          description="Shriv dit fødenavn, eller det det navn du føler dig komfortabel med vi kalder dig."
+          description="Skriv dit navn, eller det navn du føler dig komfortabel med vi kalder dig."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
@@ -106,7 +106,7 @@ export default async function Account() {
                 disabled={true}
               >
                 {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
-                Opdater navn
+                Opdatér navn
               </Button>
             </div>
           }
@@ -126,7 +126,7 @@ export default async function Account() {
         </Card>
         <Card
           title="Din e-mail"
-          description="Skriv din e-mail adresse du vil bruge til login."
+          description="Her kan du ændre den e-mail adresse du vil bruge til login."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">
@@ -139,7 +139,7 @@ export default async function Account() {
                 disabled={true}
               >
                 {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
-                Opdater Email
+                Opdatér Email
               </Button>
             </div>
           }
