@@ -217,7 +217,13 @@ export interface Database {
       [_ in never]: never;
     };
     Enums: {
-      pricing_plan_interval: "month" | "quarter" | "year" | "life";
+      pricing_plan_interval:
+        | "day"
+        | "week"
+        | "month"
+        | "quarter"
+        | "year"
+        | "life";
       pricing_type: "one_time" | "recurring";
       subscription_status:
         | "trialing"
