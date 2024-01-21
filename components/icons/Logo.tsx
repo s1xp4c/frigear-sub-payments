@@ -4,8 +4,8 @@ const Logo = ({ className = "", ...props }) => (
   <Image
     src="/FGR_logo_white.png"
     alt="FGR Logo"
-    width={32}
-    height={32}
+    width={45}
+    height={45}
     className={className}
     {...props}
   />

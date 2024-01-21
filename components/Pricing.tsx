@@ -29,7 +29,7 @@ interface Props {
   subscription: SubscriptionWithProduct | null;
 }
 
-type BillingInterval = "quarter" | "year" | "month" | "life";
+type BillingInterval = "month" | "quarter" | "year" | "life";
 
 export default function Pricing({
   session,
