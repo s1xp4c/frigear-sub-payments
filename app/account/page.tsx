@@ -28,7 +28,7 @@ export default async function Account() {
 
   const subscriptionPrice =
     subscription &&
-    new Intl.NumberFormat("en-US", {
+    new Intl.NumberFormat("da-DK", {
       style: "currency",
       currency: subscription?.prices?.currency!,
       minimumFractionDigits: 0,
