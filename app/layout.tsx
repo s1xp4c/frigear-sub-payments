@@ -33,18 +33,14 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@vercel",
+    site: "Frigear App",
     title: meta.title,
     description: meta.description,
     cardImage: meta.cardImage,
   },
 };
 
-export default function RootLayout({
-  // Layouts must accept a children prop.
-  // This will be populated with nested layouts or pages
-  children,
-}: PropsWithChildren) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body className="bg-black loading">
