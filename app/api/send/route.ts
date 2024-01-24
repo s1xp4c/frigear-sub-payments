@@ -1,3 +1,4 @@
+"use client";
 import { Resend } from "resend";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -17,7 +18,7 @@ export default async function handler(
         from: fromEmail as string,
         to: email as string,
         subject: subject as string,
-        text: `Thank you for contacting us!\nNew message submitted:\n${message}`,
+        text: `Tak for din mail!\nDin sendte besked:\n${message}`,
       });
 
       return res.json(data);
