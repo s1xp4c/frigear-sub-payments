@@ -1,13 +1,13 @@
 .root {
-  @apply sticky top-0 bg-black z-40 transition-all duration-150 h-16 md:h-20;
+  @apply sticky top-0 bg-black z-40 transition-all duration-150 h-auto;
 }
 
 .link {
-  @apply inline-flex items-center leading-6 font-medium transition ease-in-out duration-75 cursor-pointer text-zinc-200 rounded-md p-1;
+  @apply inline-flex items-center leading-6 font-medium transition ease-in-out duration-75 cursor-pointer text-zinc-200 rounded-md p-2;
 }
 
 .link:hover {
-  @apply text-zinc-100;
+  @apply text-zinc-100 ring-2 ring-pink-500 ring-opacity-50;
 }
 
 .link:focus {

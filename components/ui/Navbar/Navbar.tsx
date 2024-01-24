@@ -33,15 +33,15 @@ export default async function Navbar() {
                 </Link>
               )}
             </nav>
-          </div>
-          <div className="flex justify-end flex-1 space-x-8">
-            {user ? (
-              <SignOutButton />
-            ) : (
-              <Link href="/signin" className={s.link}>
-                Log ind
-              </Link>
-            )}
+            <div className="flex justify-end flex-1 space-x-2">
+              {user ? (
+                <SignOutButton />
+              ) : (
+                <Link href="/signin" className={s.link}>
+                  Log ind
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>
