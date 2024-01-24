@@ -89,7 +89,7 @@ export default async function Account() {
             {subscription ? (
               `${subscriptionPrice}/${subscription?.prices?.interval}`
             ) : (
-              <Link href="/">Vælg medlemskab</Link>
+              <Link href="/pricing">Vælg medlemskab</Link>
             )}
           </div>
         </Card>
@@ -118,7 +118,7 @@ export default async function Account() {
                 name="name"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
                 defaultValue={userDetails?.full_name ?? ""}
-                placeholder="Your name"
+                placeholder="Dit awesome navn . . . "
                 maxLength={64}
               />
             </form>
