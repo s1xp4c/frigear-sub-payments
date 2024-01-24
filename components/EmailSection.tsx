@@ -49,11 +49,11 @@ const EmailSection: React.FC = () => {
         <p className="text-[#ADB7BE] mb-2 max-w-md">
           {" "}
           Smid os en besked hvis du har nogen spørgsmål, så vender vi tilbage
-          ASAP ❤️
+          ASAP 💜 - Frigear frivillige
         </p>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
           {" "}
-          Mens du venter ka' du jo lige ta' et kig på vores SoMe
+          Imens du venter ka&apos; du jo lige ta&apos; et kig på vores SoMe 🐼
         </p>
         <div className="socials flex flex-row gap-2">
           <Link href="instagram.com" target="_blank">
