@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, FormEvent } from "react";
-import { FaInstagramSquare } from "react-icons/fa/";
-import { FaFacebookSquare } from "react-icons/fa/";
-import { FaYoutubeSquare } from "react-icons/fa/";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaYoutubeSquare } from "react-icons/fa";
 
 import Link from "next/link";
 
