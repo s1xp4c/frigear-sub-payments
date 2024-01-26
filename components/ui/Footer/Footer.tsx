@@ -18,55 +18,57 @@ export default function Footer() {
             <span>FRIGEAR</span>
           </Link>
         </div>
-        <div className="col-span-1 lg:col-span-2">
-          <ul className="flex flex-col flex-initial md:flex-1">
-            <li className="py-3 md:py-0 md:pb-4">
-              <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">
-                GENERELT
-              </p>
-            </li>
-            <li className="py-3 md:py-0 md:pb-4">
-              <Link
-                href="/"
-                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
-              >
-                Info
-              </Link>
-            </li>
-            <li className="py-3 md:py-0 md:pb-4">
-              <Link
-                href="/"
-                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
-              >
-                Historie
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="col-span-1 lg:col-span-2">
-          <ul className="flex flex-col flex-initial md:flex-1">
-            <li className="py-3 md:py-0 md:pb-4">
-              <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">
-                JURIDISK
-              </p>
-            </li>
-            <li className="py-3 md:py-0 md:pb-4">
-              <Link
-                href="/"
-                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
-              >
-                GDPR
-              </Link>
-            </li>
-            <li className="py-3 md:py-0 md:pb-4">
-              <Link
-                href="/"
-                className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
-              >
-                Brugerpolitik
-              </Link>
-            </li>
-          </ul>
+        <div className="grid grid-cols-2">
+          <div className="col-span-1 lg:col-span-3">
+            <ul className="flex flex-col flex-initial md:flex-1">
+              <li className="py-3 md:py-0 md:pb-4">
+                <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">
+                  GENERELT
+                </p>
+              </li>
+              <li className="py-3 md:py-0 md:pb-4">
+                <Link
+                  href="/"
+                  className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
+                >
+                  Info
+                </Link>
+              </li>
+              <li className="py-3 md:py-0 md:pb-4">
+                <Link
+                  href="/"
+                  className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
+                >
+                  Historie
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="col-span-1 lg:col-span-2">
+            <ul className="flex flex-col flex-initial md:flex-1">
+              <li className="py-3 md:py-0 md:pb-4">
+                <p className="font-bold text-white transition duration-150 ease-in-out hover:text-zinc-200">
+                  JURIDISK
+                </p>
+              </li>
+              <li className="py-3 md:py-0 md:pb-4">
+                <Link
+                  href="/"
+                  className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
+                >
+                  GDPR
+                </Link>
+              </li>
+              <li className="py-3 md:py-0 md:pb-4">
+                <Link
+                  href="/"
+                  className="text-white transition duration-150 ease-in-out hover:text-zinc-200"
+                >
+                  Brugerpolitik
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="flex items-start col-span-1 text-white lg:col-span-6 lg:justify-end">
           <div className="flex items-center h-10 space-x-6">
@@ -82,8 +84,7 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-between py-12 space-y-4 md:flex-row bg-zinc-900">
         <div>
           <span>
-            &copy; {new Date().getFullYear()} Foreningen Frigear ★ CVR-nr:
-            44353261
+            &copy; {new Date().getFullYear()} Frigear ★ CVR-nr: 44353261
           </span>
         </div>
         <div className="flex items-center">
@@ -100,7 +101,7 @@ export default function Footer() {
               className="inline-block mx-3 text-white"
             />
           </a>
-          <span className="text-white">Morten Six</span>
+          <span className="text-white">Six</span>
         </div>
       </div>
     </footer>
