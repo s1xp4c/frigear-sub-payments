@@ -39,8 +39,8 @@ export default function AuthUI() {
               password_input_placeholder: "Mega svært Frigear password...",
               button_label: "LOG IND",
               loading_button_label: "Dobbelttjekker lige...",
-              social_provider_text: "Log ind med ",
-              link_text: "IKKE oprettet endnu? Opret her!",
+              social_provider_text: "⬅ Log ind",
+              link_text: "Allerede oprettet? Log ind her!",
             },
             sign_up: {
               email_label: "Email adresse",
@@ -50,14 +50,14 @@ export default function AuthUI() {
               button_label: "OPRET BRUGER",
               loading_button_label: "Dobbelttjekker lige...",
               social_provider_text: "Opret konto med ",
-              link_text: "Allerede oprettet? Log ind her!",
+              link_text: "IKKE oprettet endnu? Opret her!",
             },
             magic_link: {
               email_input_label: "Email adresse",
               email_input_placeholder: "Din awesome email her... ",
               button_label: "FÅ MAGIC LINK",
               loading_button_label: "Sender magisk link...",
-              link_text: "Allerede oprettet? Log ind her!",
+              link_text: "Log ind med Magic link? Få et her!",
               confirmation_text: "BUM! - Tjek din email for Magic link",
             },
             forgotten_password: {
@@ -79,13 +79,15 @@ export default function AuthUI() {
           },
         }}
         theme="dark"
-      />
-      <Turnstile
-        siteKey={turnstileSiteKey as string}
-        onSuccess={(token) => {
-          setCaptchaToken(token);
-        }}
-      />
+      >
+        <Turnstile
+          id="Auth"
+          siteKey={turnstileSiteKey as string}
+          onSuccess={(token) => {
+            setCaptchaToken(token);
+          }}
+        />
+      </Auth>
     </div>
   );
 }

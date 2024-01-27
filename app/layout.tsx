@@ -57,11 +57,11 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <Footer />
         </SupabaseProvider>
       </body>
-      <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      {/* <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback"
         async
         defer
-      ></Script>
+      ></Script> */}
     </html>
   );
 }
