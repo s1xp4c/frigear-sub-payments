@@ -1,11 +1,14 @@
 import { getSession } from "@/app/supabase-server";
 import AuthUI from "./AuthUI";
-
+import { Turnstile } from "@marsidev/react-turnstile";
 import { redirect } from "next/navigation";
 import Logo from "@/components/icons/Logo";
+import { useState } from "react";
 
 export default async function SignIn() {
   const session = await getSession();
+  const [captchaToken, setCaptchaToken] = useState<string>();
+  const turnstileSiteKey = process.env.TURNSTILE_SITE_KEY;
 
   if (session) {
     return redirect("/account");
@@ -18,6 +21,12 @@ export default async function SignIn() {
           <Logo />
         </div>
         <AuthUI />
+        <Turnstile
+          siteKey={turnstileSiteKey as string}
+          onSuccess={(token) => {
+            setCaptchaToken(token);
+          }}
+        />
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ const meta = {
   cardImage: "/logo_with_rf_bgr.png",
   robots: "follow, index",
   favicon: "/favicon.ico",
-  url: "https://frigear-sub-payments.vercel.app/",
+  url: "https://frigear.nu/",
   type: "website",
 };
 

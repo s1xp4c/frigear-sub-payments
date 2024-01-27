@@ -71,7 +71,7 @@ export default async function Account() {
             Konto
           </h1>
           <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-            Se og ret dine kontoindstillinger her.
+            Se og ret kontoindstillinger her
           </p>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default async function Account() {
           title="Dit medlemskab"
           description={
             subscription
-              ? `Du er pt. tilknyttet ${subscription?.prices?.products?.name}.`
+              ? `Du er tilknyttet: \n ${subscription?.prices?.products?.name}.`
               : "Du har ikke valgt et medlemskab af Frigeear endnu."
           }
           footer={<ManageSubscriptionButton session={session} />}
@@ -95,7 +95,7 @@ export default async function Account() {
         </Card>
         <Card
           title="Dit navn"
-          description="Skriv dit navn, eller det navn du føler dig komfortabel med vi kalder dig."
+          description="Skriv det navn du gerne vil kaldes"
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
@@ -111,7 +111,7 @@ export default async function Account() {
             </div>
           }
         >
-          <div className="mt-8 mb-4 text-xl font-semibold">
+          <div className="mt-8 w-full mb-4 text-xl font-semibold">
             <form id="nameForm" action={updateName}>
               <input
                 type="text"
@@ -125,8 +125,8 @@ export default async function Account() {
           </div>
         </Card>
         <Card
-          title="Din e-mail"
-          description="Her kan du ændre den e-mail adresse du vil bruge til login."
+          title="Din email"
+          description="Her kan du ændre den e-mail adresse du bruger til login."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">
@@ -144,14 +144,14 @@ export default async function Account() {
             </div>
           }
         >
-          <div className="mt-8 mb-4 text-xl font-semibold">
+          <div className="mt-8 mb-4 text-xl w-full font-semibold">
             <form id="emailForm" action={updateEmail}>
               <input
                 type="text"
                 name="email"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
                 defaultValue={user ? user.email : ""}
-                placeholder="Your email"
+                placeholder="Din email"
                 maxLength={64}
               />
             </form>
