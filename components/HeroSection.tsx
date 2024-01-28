@@ -32,7 +32,9 @@ const HeroSection = () => {
                 2000,
                 "Skal du være med?",
                 2000,
-                "Bliv medlem",
+                "Bliv medlem!",
+                2000,
+                "Bliv frivillig!",
                 2000,
               ]}
               wrapper="span"

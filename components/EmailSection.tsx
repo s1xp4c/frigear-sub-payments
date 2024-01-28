@@ -14,6 +14,7 @@ const EmailSection: React.FC = () => {
     const formData = new FormData(e.currentTarget);
 
     const data = {
+      name: formData.get("name") as string,
       email: formData.get("email") as string,
       subject: formData.get("subject") as string,
       message: formData.get("message") as string,
@@ -53,16 +54,16 @@ const EmailSection: React.FC = () => {
         </p>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
           {" "}
-          Imens du venter ka&apos; du jo lige ta&apos; et kig på vores SoMe 🐼
+          Imens du venter ka&apos; du ta&apos; et kig på vores SoMe her 🐼
         </p>
         <div className="socials flex flex-row gap-2">
-          <Link href="instagram.com" target="_blank">
+          <Link href="https://instagram.com" target="_blank">
             <FaInstagramSquare className="w-10 h-10" />
           </Link>
           <Link href="https://www.facebook.com/Frigear.nu" target="_blank">
             <FaFacebookSquare className="w-10 h-10" />
           </Link>
-          <Link href="youtube.com" target="_blank">
+          <Link href="https://youtube.com" target="_blank">
             <FaYoutubeSquare className="w-10 h-10" />
           </Link>
         </div>
@@ -74,10 +75,26 @@ const EmailSection: React.FC = () => {
           <form className="flex flex-col" onSubmit={handleSubmit}>
             <div className="mb-6">
               <label
+                htmlFor="name"
+                className="text-white block mb-2 text-sm font-medium"
+              >
+                Dit seje navn
+              </label>
+              <input
+                name="name"
+                type="text"
+                id="name"
+                required
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                placeholder="Hei, hvad hedder du? . . put her"
+              />
+            </div>
+            <div className="mb-6">
+              <label
                 htmlFor="email"
                 className="text-white block mb-2 text-sm font-medium"
               >
-                Din e-mail
+                Din email
               </label>
               <input
                 name="email"
@@ -85,7 +102,7 @@ const EmailSection: React.FC = () => {
                 id="email"
                 required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="volunteerHero@frigear.nu"
+                placeholder="volunteerHero@someDomain.lol"
               />
             </div>
             <div className="mb-6">
@@ -115,14 +132,14 @@ const EmailSection: React.FC = () => {
                 name="message"
                 id="message"
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="Lad os snakke om et awesome Frigear projekt ..."
+                placeholder="Jeg vil snakke om et awesome Frigear projekt ..."
               />
             </div>
             <button
               type="submit"
               className="bg-indigo-600 border-2 border-transparent hover:border-indigo-300 hover:bg-indigo-700 text-white font-medium py-2.5 px-5 rounded-lg w-full"
             >
-              Send besked
+              SEND BESKED
             </button>
           </form>
         )}

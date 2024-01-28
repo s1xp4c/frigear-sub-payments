@@ -1,7 +1,6 @@
 import SupabaseProvider from "./supabase-provider";
 import Footer from "@/components/ui/Footer";
 import Navbar from "@/components/ui/Navbar";
-import Script from "next/script";
 import { PropsWithChildren } from "react";
 import "styles/main.css";
 
@@ -57,11 +56,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <Footer />
         </SupabaseProvider>
       </body>
-      {/* <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback"
-        async
-        defer
-      ></Script> */}
     </html>
   );
 }
