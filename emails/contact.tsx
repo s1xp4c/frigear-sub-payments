@@ -1,3 +1,4 @@
+"use client";
 import {
   Body,
   Container,
@@ -9,6 +10,11 @@ import {
   Preview,
   Text,
 } from "@react-email/components";
+import * as React from "react";
+
+// const baseUrl = process.env.VERCEL_URL
+//   ? `https://${process.env.VERCEL_URL}`
+//   : "";
 
 interface ContactEmailProps {
   name: string;
@@ -17,12 +23,7 @@ interface ContactEmailProps {
   message: string;
 }
 
-export const ContactEmail = ({
-  name,
-  email,
-  subject,
-  message,
-}: ContactEmailProps) => (
+const ContactEmail = ({ name, email, subject, message }: ContactEmailProps) => (
   <Html>
     <Head />
     <Preview>Mail fra kontakt form!</Preview>
@@ -31,6 +32,12 @@ export const ContactEmail = ({
         <Heading style={h1}>
           Mail fra {name} med emne: {subject}{" "}
         </Heading>
+        {/* <Img
+            src={`${baseUrl}/six-logo.png`}
+            width="49"
+            height="21"
+            alt="Stripe"
+          /> */}
         <Text style={{ ...text, marginBottom: "14px" }}>{message}</Text>
         <Text style={footer}>Sendt fra email: {email} </Text>
       </Container>
