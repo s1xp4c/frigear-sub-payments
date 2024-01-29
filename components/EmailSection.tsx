@@ -1,39 +1,52 @@
 "use client";
-import React, { useState, FormEvent } from "react";
+import React, { useState } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaYoutubeSquare } from "react-icons/fa";
 
 import Link from "next/link";
 
+function isInputNamedElement(
+  e: Element
+): e is HTMLInputElement & { name: string } {
+  return "value" in e && "name" in e;
+}
+
 const EmailSection: React.FC = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    const formData: Record<string, string> = {};
 
-    const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      subject: formData.get("subject") as string,
-      message: formData.get("message") as string,
-    };
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
+    Array.from(e.currentTarget.elements)
+      .filter(isInputNamedElement)
+      .forEach((field) => {
+        if (!field.name) return;
+        formData[field.name] = field.value;
+      });
+    const endpoint = "/api/email";
 
     const options = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSONdata,
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      }),
     };
 
     const response = await fetch(endpoint, options);
+
+    if (!response.ok) {
+      console.error("Error response from server:", response);
+      return;
+    }
+
     const resData = await response.json();
 
-    if (response.status === 200) {
+    if (resData.status === 200) {
       console.log("Message sent.");
       setEmailSubmitted(true);
     }
@@ -42,9 +55,9 @@ const EmailSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="grid md:grid-cols-2 my-12 md:my-12 py-24 gap-4 relative"
+      className="grid md:grid-cols-2 my-12 md:my-12 py-44 gap-2 relative"
     >
-      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
+      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 to-transparent rounded-full h-80 w-80 blur-lg absolute top-[80%] -left-2 transform -translate-x-1/2 -translate-1/2 z-0"></div>
       <div className="z-10">
         <h5 className="text-xl font-bold text-white my-2">✉ Kontakt os</h5>
         <p className="text-[#ADB7BE] mb-2 max-w-md">

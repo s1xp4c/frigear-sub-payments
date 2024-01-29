@@ -1,39 +1,44 @@
-"use client";
+import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { EmailTemplate } from "@/components/templates/EmailTemplate";
+
+import ContactEmail from "@/components/emails/contact";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromEmail = process.env.KONTAKT_EMAIL;
+export async function POST(request: Request) {
+  const { email, subject, message, name } = await request.json();
 
-// interface EmailProps {
-//   name: string;
-//   email: string;
-//   subject: string;
-//   message: string;
-// }
-
-type DataResponse = { data: string };
-
-export async function POST(req: Request) {
-  const { email, subject, message, name } = await req.json();
   try {
-    const { data, error } = await resend.emails.send({
-      from: `Frigear, <{${fromEmail}}>` as any as string,
-      to: { fromEmail, email } as any as string,
-      subject: { subject } as any as string,
-      react: EmailTemplate({
+    await resend.emails.send({
+      from: `${name}, <${email}>` || "",
+      to: fromEmail || "",
+      subject: subject,
+      react: ContactEmail({
+        message,
         name,
         email,
         subject,
-        message,
-      }) as React.ReactElement,
+      }),
     });
-    if (error) {
-      return Response.json({ error }) as any;
+    return NextResponse.json(
+      {
+        status: "Ok",
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      console.log(`Failed to send email: ${e.message}`);
     }
-
-    return Response.json({ data }) as any;
-  } catch (error) {
-    return Response.json({ error }) as any;
+    return NextResponse.json(
+      {
+        error: "Internal server error.",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
