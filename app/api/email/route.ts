@@ -1,10 +1,12 @@
-"use client";
 import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
 import { NextRequest, NextResponse } from "next/server";
 import * as z from "zod";
-import { ReactElement } from "react";
 
+export const runtime = "edge";
+export const dynamic = "force-dynamic";
+
+// const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(process.env.RESEND_API_KEY);
 const contactEmail = process.env.KONTAKT_EMAIL || "";
 // const testEmail = process.env.TEST_EMAIL as string;
@@ -28,7 +30,7 @@ export async function POST(req: NextRequest) {
     subject: subject,
     reply_to: emailAddress,
     react: ContactEmail({ name, emailAddress, subject, phoneNumber, content }),
-  } as ReactElement | string | number | any);
+  } as React.ReactElement | string | number | any);
 
   return NextResponse.json({ data, error: null }, { status: 200 });
 }
