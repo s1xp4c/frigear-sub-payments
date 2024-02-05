@@ -1,4 +1,4 @@
-"use server";
+"use client";
 import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
 import { NextRequest, NextResponse } from "next/server";
@@ -6,7 +6,7 @@ import * as z from "zod";
 import { ReactElement } from "react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const contactEmail = process.env.KONTAKT_EMAIL;
+const contactEmail = process.env.KONTAKT_EMAIL || "";
 // const testEmail = process.env.TEST_EMAIL as string;
 
 const sendRouteSchema = z.object({
