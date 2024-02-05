@@ -1,12 +1,11 @@
-"use client";
 import {
   Body,
   Container,
   Head,
   Heading,
   Html,
-  Img,
-  Link,
+  // Img,
+  // Link,
   Preview,
   Text,
 } from "@react-email/components";
@@ -18,12 +17,19 @@ import * as React from "react";
 
 interface ContactEmailProps {
   name: string;
-  email: string;
+  emailAddress: string;
+  phoneNumber: number;
   subject: string;
-  message: string;
+  content: string;
 }
 
-const ContactEmail = ({ name, email, subject, message }: ContactEmailProps) => (
+const ContactEmail = ({
+  name,
+  emailAddress,
+  subject,
+  content,
+  phoneNumber,
+}: ContactEmailProps) => {
   <Html>
     <Head />
     <Preview>Mail fra kontakt form!</Preview>
@@ -38,12 +44,14 @@ const ContactEmail = ({ name, email, subject, message }: ContactEmailProps) => (
             height="21"
             alt="Stripe"
           /> */}
-        <Text style={{ ...text, marginBottom: "14px" }}>{message}</Text>
-        <Text style={footer}>Sendt fra email: {email} </Text>
+        <Text style={{ ...text, marginBottom: "14px" }}>{content}</Text>
+        <Text style={footer}>
+          Sendt fra email: {emailAddress} Fon: +45 {phoneNumber}
+        </Text>
       </Container>
     </Body>
-  </Html>
-);
+  </Html>;
+};
 
 export default ContactEmail;
 

@@ -44,7 +44,7 @@ export default async function Account() {
     const { error } = await supabase
       .from("users")
       .update({ full_name: newName })
-      .eq("id", user?.id);
+      .eq("id", user?.id as string);
     if (error) {
       console.log(error);
     }
@@ -105,7 +105,6 @@ export default async function Account() {
                 form="nameForm"
                 disabled={true}
               >
-                {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
                 Opdatér navn
               </Button>
             </div>
@@ -138,7 +137,6 @@ export default async function Account() {
                 form="emailForm"
                 disabled={true}
               >
-                {/* WARNING - In Next.js 13.4.x server actions are in alpha and should not be used in production code! */}
                 Opdatér Email
               </Button>
             </div>

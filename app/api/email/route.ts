@@ -1,44 +1,34 @@
-import { NextResponse } from "next/server";
+"use server";
 import { Resend } from "resend";
-
-import ContactEmail from "@/emails/contact";
+import ContactEmail from "@/emails/ContactEmail";
+import { NextRequest, NextResponse } from "next/server";
+import * as z from "zod";
+import { ReactElement } from "react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const fromEmail = process.env.KONTAKT_EMAIL;
-export async function POST(request: Request) {
-  const { email, subject, message, name } = await request.json();
+const contactEmail = process.env.KONTAKT_EMAIL;
+// const testEmail = process.env.TEST_EMAIL as string;
 
-  try {
-    await resend.emails.send({
-      from: `${name}, <${email}>` || "",
-      to: fromEmail || "",
-      subject: subject,
-      react: ContactEmail({
-        message,
-        name,
-        email,
-        subject,
-      }),
-    });
-    return NextResponse.json(
-      {
-        status: "Ok",
-      },
-      {
-        status: 200,
-      }
-    );
-  } catch (e: unknown) {
-    if (e instanceof Error) {
-      console.log(`Failed to send email: ${e.message}`);
-    }
-    return NextResponse.json(
-      {
-        error: "Internal server error.",
-      },
-      {
-        status: 500,
-      }
-    );
-  }
+const sendRouteSchema = z.object({
+  name: z.string().min(3),
+  emailAddress: z.string().email(),
+  phoneNumber: z.number().min(8),
+  subject: z.string().min(2),
+  content: z.string().min(2),
+});
+
+export async function POST(req: NextRequest) {
+  const { name, emailAddress, phoneNumber, subject, content } = await req
+    .json()
+    .then((body) => sendRouteSchema.parse(body));
+
+  const data = await resend.emails.send({
+    from: `Mail Fra ${name}: <${emailAddress}>`,
+    to: contactEmail,
+    subject: subject,
+    reply_to: emailAddress,
+    react: ContactEmail({ name, emailAddress, subject, phoneNumber, content }),
+  } as ReactElement | string | number | any);
+
+  return NextResponse.json({ data, error: null }, { status: 200 });
 }

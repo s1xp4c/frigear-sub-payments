@@ -1,56 +1,57 @@
 "use client";
-import { FormEvent } from "react";
+// import { useState } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaYoutubeSquare } from "react-icons/fa";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
 import Link from "next/link";
 
-function isInputNamedElement(
-  e: Element
-): e is HTMLInputElement & { name: string } {
-  return "value" in e && "name" in e;
-}
+const formSchema = z.object({
+  name: z.string().min(2, {
+    message: "Navn skal være mindst 3 karakterer.",
+  }),
+  email: z.string().email({
+    message: "Email skal være i rigtigt format",
+  }),
+  phone: z.string().min(2, {
+    message: "Fon nummer er mindst 8 tal",
+  }),
+  subject: z.string().min(2, {
+    message: "Smid lige et emne!",
+  }),
+  content: z.string().min(2, {
+    message: "Smæk lige en rigtig besked!",
+  }),
+});
 
 const EmailSection = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
   // const [emailSubmitted, setEmailSubmitted] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData: Record<string, string> = {};
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
 
-    Array.from(e.currentTarget.elements)
-      .filter(isInputNamedElement)
-      .forEach((field) => {
-        if (!field.name) return;
-        formData[field.name] = field.value;
-      });
-    const endpoint = "/api/email";
-
-    const options = {
+    await fetch("/api/send", {
       method: "POST",
       body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
+        name: values.name,
+        emailAddress: values.email,
+        phoneNumber: values.phone,
+        subject: values.subject,
+        content: values.content,
       }),
-    };
-
-    const response = await fetch(endpoint, options);
-
-    if (!response.ok) {
-      console.error("Error response from server:", response);
-      return;
-    }
-
-    const resData = await response.json();
-
-    if (resData.status === 200) {
-      console.log("Message sent.");
-      // setEmailSubmitted(true);
-    }
-  };
+    });
+  }
 
   return (
     <section
@@ -62,12 +63,12 @@ const EmailSection = () => {
         <h5 className="text-xl font-bold text-white my-2">✉ Kontakt os</h5>
         <p className="text-[#ADB7BE] mb-2 max-w-md">
           {" "}
-          Smid os en besked hvis du har nogen spørgsmål, så vender vi tilbage
-          ASAP 💜 - Frigear frivillige
+          Smid os en besked hvis du har nogen spørgsmål, så vender en Frigear
+          frivillig tilbage ASAP 💜
         </p>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
           {" "}
-          Imens du venter ka&apos; du ta&apos; et kig på vores SoMe her 🐼
+          Tjek evt. vores SoMe mens du venter 🐼
         </p>
         <div className="socials flex flex-row gap-2">
           <Link href="https://instagram.com" target="_blank">
@@ -85,7 +86,7 @@ const EmailSection = () => {
         {/* {emailSubmitted ? (
           <p className="text-green-500 text-sm mt-2">E-mail afsendt!</p>
         ) : ( */}
-        <form className="flex flex-col" onSubmit={handleSubmit}>
+        <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-6">
             <label
               htmlFor="name"
@@ -94,13 +95,42 @@ const EmailSection = () => {
               Dit seje navn
             </label>
             <input
-              name="name"
+              // name="name"
               type="text"
               id="name"
               required
               className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
               placeholder="Hei, hvad hedder du? . . put her"
+              {...register("name")}
             />
+
+            {errors?.name && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.name?.message}
+              </p>
+            )}
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="phone"
+              className="text-white block mb-2 text-sm font-medium"
+            >
+              Dit fon nummer
+            </label>
+            <input
+              // name="phone"
+              type="tel"
+              id="phone"
+              className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+              placeholder="Dit nummer? ..."
+              {...register("phone")}
+            />
+
+            {errors?.phone && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.phone?.message}
+              </p>
+            )}
           </div>
           <div className="mb-6">
             <label
@@ -110,13 +140,20 @@ const EmailSection = () => {
               Din email
             </label>
             <input
-              name="email"
+              // name="email"
               type="email"
               id="email"
               required
               className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
               placeholder="volunteerHero@someDomain.lol"
+              {...register("email")}
             />
+
+            {errors?.email && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.email?.message}
+              </p>
+            )}
           </div>
           <div className="mb-6">
             <label
@@ -126,13 +163,20 @@ const EmailSection = () => {
               Emne
             </label>
             <input
-              name="subject"
+              // name="subject"
               type="text"
               id="subject"
               required
               className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
               placeholder="Ville bare lige smide et virtuelt kram :)"
+              {...register("subject")}
             />
+
+            {errors?.subject && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.subject?.message}
+              </p>
+            )}
           </div>
           <div className="mb-6">
             <label
@@ -142,11 +186,20 @@ const EmailSection = () => {
               Besked
             </label>
             <textarea
-              name="message"
+              // name="message"
               id="message"
+              rows={8}
+              required
               className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
               placeholder="Jeg vil snakke om et awesome Frigear projekt ..."
+              {...register("content")}
             />
+
+            {errors?.content && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.content?.message}
+              </p>
+            )}
           </div>
           <button
             type="submit"

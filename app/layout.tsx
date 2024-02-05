@@ -32,7 +32,7 @@ export const metadata = {
     site_name: meta.title,
   },
   twitter: {
-    card: "/logo_with_rf_bgr.png",
+    card: "summary_large_image",
     site: "Frigear App",
     title: meta.title,
     description: meta.description,
