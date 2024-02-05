@@ -4,9 +4,6 @@ import ContactEmail from "@/emails/ContactEmail";
 import { NextRequest, NextResponse } from "next/server";
 import * as z from "zod";
 
-export const runtime = "edge";
-export const dynamic = "force-dynamic";
-
 // const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(process.env.RESEND_API_KEY);
 const contactEmail = process.env.KONTAKT_EMAIL || "";
@@ -26,12 +23,12 @@ export async function POST(req: NextRequest) {
     .then((body) => sendRouteSchema.parse(body));
 
   const data = await resend.emails.send({
-    from: `Mail Fra ${name}: <${emailAddress}>`,
-    to: contactEmail,
+    from: `Mail Fra ${name}: <${contactEmail}>`,
+    to: [contactEmail],
     subject: subject,
     reply_to: emailAddress,
     react: ContactEmail({ name, emailAddress, subject, phoneNumber, content }),
-  } as React.ReactElement | string | number | any);
+  } as React.ReactElement | string | number | any | void);
 
   return NextResponse.json({ data, error: null }, { status: 200 });
 }
