@@ -17,8 +17,8 @@ const formSchema = z.object({
   email: z.string().email({
     message: "Email skal være i rigtigt format",
   }),
-  phone: z.string().min(2, {
-    message: "Fon nummer er mindst 8 tal",
+  phone: z.string().min(8, {
+    message: "Fon nummer er 8 tal",
   }),
   subject: z.string().min(2, {
     message: "Smid lige et emne!",
