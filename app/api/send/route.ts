@@ -17,7 +17,7 @@ const sendRouteSchema = z.object({
   content: z.string().min(2),
 });
 
-export async function POST(req: NextRequest) {
+export default async function POST(req: NextRequest) {
   const { name, emailAddress, phoneNumber, subject, content } = await req
     .json()
     .then((body) => sendRouteSchema.parse(body));
@@ -29,6 +29,6 @@ export async function POST(req: NextRequest) {
     reply_to: emailAddress,
     react: ContactEmail({ name, emailAddress, subject, phoneNumber, content }),
   } as React.ReactElement | string | number | any | void);
-
+  console.log(`This: ${data} was sent`);
   return NextResponse.json({ data, error: null }, { status: 200 });
 }
