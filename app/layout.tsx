@@ -2,48 +2,81 @@ import SupabaseProvider from "./supabase-provider";
 import Footer from "@/components/ui/Footer";
 import Navbar from "@/components/ui/Navbar";
 import { Analytics } from "@vercel/analytics/react";
+import { Metadata } from "next";
 import { PropsWithChildren } from "react";
 import "styles/main.css";
+import { Viewport } from "next/dist/lib/metadata/types/extra-types";
 
-const meta = {
-  title: "Foreningen Frigear",
-  description:
-    "Frigear appen for medlemmer og nysgerrige på vores Non-profit projekter",
-  cardImage: "/logo_with_rf_bgr.png",
-  robots: "follow, index",
-  favicon: "/favicon.ico",
-  url: "https://frigear.nu/",
-  type: "website",
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
-export const metadata = {
-  title: meta.title,
-  description: meta.description,
-  cardImage: meta.cardImage,
-  robots: meta.robots,
-  favicon: meta.favicon,
-  url: meta.url,
-  type: meta.type,
+export const meta: Metadata = {
+  title: {
+    template: "%s | Frigear",
+    default: "Non-profit | Frigear",
+  },
+  generator: "Next.js",
+  applicationName: "Frigear-App",
+  referrer: "origin-when-cross-origin",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      "da-DK": "/da-DK",
+      "de-DE": "/de-DE",
+      "en-US": "/en-US",
+    },
+  },
+  keywords: [
+    "Foreningen Frigear, Frigear, Non-profit, Frivillige, Roskilde festival frivillig, bar, Arena scenen, Frigear Bar, Forening, Almennyttig, Frivillig-drevet, Frivillig-forening, Foreningsliv",
+  ],
+  creator: "Morten Six",
+  description:
+    "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
   openGraph: {
-    url: meta.url,
-    title: meta.title,
-    description: meta.description,
-    cardImage: meta.cardImage,
-    type: meta.type,
-    site_name: meta.title,
+    title: "Frigear",
+    description:
+      "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
+    url: "https://frigear.nu/",
+    siteName: "Frigear",
+    images: ["logo_with_rf_bgr.jpg", "FGR_logo_purple-dark.png"],
+    type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    site: "Frigear App",
-    title: meta.title,
-    description: meta.description,
-    cardImage: meta.cardImage,
+    title: "Frigear",
+    description:
+      "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
+    site: "https://frigear.nu/",
+    images: ["logo_with_rf_bgr.jpg", "FGR_logo_purple-dark.png"],
   },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://frigear.nu"
+  ),
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="da">
       <body className="bg-black loading">
         <SupabaseProvider>
           {/* @ts-expect-error */}
