@@ -28,14 +28,14 @@ export async function POST(req: Request) {
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
-      react: ContactEmail({
+      html: ContactEmail({
         name,
         emailAddress,
         subject,
         phoneNumber,
         content,
       }),
-    } as React.ReactElement | string | string[] | any);
+    } as React.ReactElement | string | string[] | any | Text);
     console.log(`This: ${data} was sent`);
     return NextResponse.json({ data, error: null }, { status: 200 });
   } catch (error) {
