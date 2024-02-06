@@ -4,7 +4,7 @@ import ContactEmail from "@/emails/ContactEmail";
 import * as z from "zod";
 import * as React from "react";
 import { NextResponse } from "next/server";
-import { renderAsync } from "@react-email/render";
+import { render } from "@react-email/render";
 
 // const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -24,14 +24,14 @@ export async function POST(req: Request) {
     .json()
     .then((body) => sendRouteSchema.parse(body));
 
-  const html = await renderAsync(
+  const emailHtml = render(
     ContactEmail({
       name,
       emailAddress,
       subject,
       phoneNumber,
       content,
-    }) as React.ReactElement | string | string[] | any
+    }) as React.ReactElement | Text | string | string[] | any
   );
 
   try {
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
-      html: html,
+      html: emailHtml,
     });
 
     console.log(`This: ${data} was sent`);
