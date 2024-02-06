@@ -13,7 +13,7 @@ const contactEmail = process.env.KONTAKT_EMAIL || "";
 const sendRouteSchema = z.object({
   name: z.string().min(3),
   emailAddress: z.string().email(),
-  phoneNumber: z.number().min(8),
+  phoneNumber: z.string().min(8),
   subject: z.string().min(2),
   content: z.string().min(2),
 });
