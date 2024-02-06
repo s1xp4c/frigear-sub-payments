@@ -17,7 +17,7 @@ const sendRouteSchema = z.object({
   content: z.string().min(2),
 });
 
-export default async function POST(req: NextRequest) {
+export default async function GET(req: NextRequest) {
   const { name, emailAddress, phoneNumber, subject, content } = await req
     .json()
     .then((body) => sendRouteSchema.parse(body));
