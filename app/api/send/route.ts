@@ -26,12 +26,12 @@ export async function POST(req: Request) {
 
   const emailHtml = render(
     ContactEmail({
-      name,
-      emailAddress,
-      subject,
-      phoneNumber,
-      content,
-    }) as React.ReactElement | Text | string | string[] | any
+      name: name,
+      emailAddress: emailAddress,
+      subject: subject,
+      phoneNumber: phoneNumber,
+      content: content,
+    }) as React.ReactElement | any
   );
 
   try {
