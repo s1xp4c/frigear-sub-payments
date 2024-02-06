@@ -3,13 +3,11 @@ import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
 import * as z from "zod";
 import * as React from "react";
-import { NextResponse } from "next/server";
 import { render } from "@react-email/render";
+import { NextApiResponse } from "next";
 
-// const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(process.env.RESEND_API_KEY);
 const contactEmail = process.env.KONTAKT_EMAIL || "";
-// const testEmail = process.env.TEST_EMAIL as string;
 
 const sendRouteSchema = z.object({
   name: z.string().min(3),
@@ -19,7 +17,7 @@ const sendRouteSchema = z.object({
   content: z.string().min(2),
 });
 
-export async function POST(req: Request) {
+export async function POST(req: Request, res: NextApiResponse) {
   const { name, emailAddress, phoneNumber, subject, content } = await req
     .json()
     .then((body) => sendRouteSchema.parse(body));
@@ -31,12 +29,12 @@ export async function POST(req: Request) {
       subject: subject,
       phoneNumber: phoneNumber,
       content: content,
-    }) as React.ReactElement | any
+    }) as React.ReactElement | any | string
   );
 
   try {
     const data = await resend.emails.send({
-      from: `Mail Fra ${name} <${contactEmail}>`,
+      from: `Kontaktform ${name} <${contactEmail}>`,
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
@@ -45,9 +43,9 @@ export async function POST(req: Request) {
 
     console.log(`This: ${data} was sent`);
 
-    return NextResponse.json({ data: data, error: null }, { status: 200 });
-  } catch (error: unknown) {
+    return res.json({ data: data, status: 200 });
+  } catch (error: unknown | null) {
     console.log(error);
-    return NextResponse.json({ error } as unknown);
+    return res.json({ error } as unknown | null);
   }
 }
