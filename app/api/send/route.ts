@@ -1,7 +1,6 @@
 "use client";
 import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
-import { NextRequest, NextResponse } from "next/server";
 import * as z from "zod";
 
 // const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -17,18 +16,27 @@ const sendRouteSchema = z.object({
   content: z.string().min(2),
 });
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   const { name, emailAddress, phoneNumber, subject, content } = await req
     .json()
     .then((body) => sendRouteSchema.parse(body));
-
-  const data = await resend.emails.send({
-    from: `Mail Fra ${name}: <${contactEmail}>`,
-    to: [contactEmail],
-    subject: subject,
-    reply_to: emailAddress,
-    react: ContactEmail({ name, emailAddress, subject, phoneNumber, content }),
-  } as React.ReactElement | string | number | any | void);
-  console.log(`This: ${data} was sent`);
-  return NextResponse.json({ data, error: null }, { status: 200 });
+  try {
+    const data = await resend.emails.send({
+      from: `Mail Fra ${name}: <${contactEmail}>`,
+      to: [contactEmail],
+      subject: subject,
+      reply_to: emailAddress,
+      react: ContactEmail({
+        name,
+        emailAddress,
+        subject,
+        phoneNumber,
+        content,
+      }),
+    } as React.ReactElement | string | number | any | void);
+    console.log(`This: ${data} was sent`);
+    return Response.json({ data, error: null }, { status: 200 });
+  } catch (error) {
+    return Response.json({ error });
+  }
 }
