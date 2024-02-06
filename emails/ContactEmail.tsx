@@ -18,7 +18,7 @@ import * as React from "react";
 interface ContactEmailProps {
   name: string;
   emailAddress: string;
-  phoneNumber: number;
+  phoneNumber: string;
   subject: string;
   content: string;
 }
