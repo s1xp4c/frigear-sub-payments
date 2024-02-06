@@ -1,4 +1,4 @@
-"use client";
+"use server";
 import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
 import * as z from "zod";
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     .json()
     .then((body) => sendRouteSchema.parse(body));
   try {
-    const { ...data } = await resend.emails.send({
+    const data = await resend.emails.send({
       from: `Mail Fra ${name}: <${contactEmail}>`,
       to: [contactEmail],
       subject: subject,
