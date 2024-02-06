@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
   try {
     const data = await resend.emails.send({
-      from: `Mail Fra ${name}: <${contactEmail}>`,
+      from: `Mail Fra ${name} <${contactEmail}>`,
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
