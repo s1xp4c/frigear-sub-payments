@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
 import * as z from "zod";
 import * as React from "react";
+import { NextResponse } from "next/server";
 
 // const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
     .json()
     .then((body) => sendRouteSchema.parse(body));
   try {
-    const { data, error } = await resend.emails.send({
+    const { ...data } = await resend.emails.send({
       from: `Mail Fra ${name}: <${contactEmail}>`,
       to: [contactEmail],
       subject: subject,
@@ -36,8 +37,8 @@ export async function POST(req: Request) {
       }),
     } as React.ReactElement | string | string[] | any);
     console.log(`This: ${data} was sent`);
-    return Response.json({ data, error: null }, { status: 200 });
+    return NextResponse.json({ data, error: null }, { status: 200 });
   } catch (error) {
-    return Response.json({ error } as unknown);
+    return NextResponse.json({ error } as unknown);
   }
 }
