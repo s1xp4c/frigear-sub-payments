@@ -4,6 +4,7 @@ import ContactEmail from "@/emails/ContactEmail";
 import * as z from "zod";
 import * as React from "react";
 import { NextResponse } from "next/server";
+import { renderAsync } from "@react-email/render";
 
 // const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -22,23 +23,31 @@ export async function POST(req: Request) {
   const { name, emailAddress, phoneNumber, subject, content } = await req
     .json()
     .then((body) => sendRouteSchema.parse(body));
+
+  const html = await renderAsync(
+    ContactEmail({
+      name,
+      emailAddress,
+      subject,
+      phoneNumber,
+      content,
+    }) as React.ReactElement | string | string[] | any
+  );
+
   try {
     const data = await resend.emails.send({
       from: `Mail Fra ${name}: <${contactEmail}>`,
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
-      body: ContactEmail({
-        name,
-        emailAddress,
-        subject,
-        phoneNumber,
-        content,
-      }),
-    } as React.ReactElement | string | string[] | any);
+      html: html,
+    });
+
     console.log(`This: ${data} was sent`);
-    return NextResponse.json({ data, error: null }, { status: 200 });
-  } catch (error) {
+
+    return NextResponse.json({ data: data, error: null }, { status: 200 });
+  } catch (error: unknown) {
+    console.log(error);
     return NextResponse.json({ error } as unknown);
   }
 }
