@@ -32,10 +32,11 @@ const ContactEmail = ({
   phoneNumber,
 }: ContactEmailProps) => {
   const previewText = `Mail fra ${name}`;
-  <Html>
-    <Head />
-    <Preview>{previewText}</Preview>
-    <Tailwind>
+
+  return (
+    <Html>
+      <Head />
+      <Preview>{previewText}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>
@@ -49,8 +50,8 @@ const ContactEmail = ({
           </Text>
         </Container>
       </Body>
-    </Tailwind>
-  </Html>;
+    </Html>
+  );
 };
 
 export default ContactEmail;

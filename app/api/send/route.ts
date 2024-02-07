@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import ContactEmail from "@/emails/ContactEmail";
 import * as z from "zod";
 import * as React from "react";
-import { render } from "@react-email/render";
+
 import { NextApiResponse } from "next";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -22,23 +22,23 @@ export async function POST(req: Request, res: NextApiResponse) {
     .json()
     .then((body) => sendRouteSchema.parse(body));
 
-  const emailHtml = render(
+  const emailHtml = renderToStaticMarkup(
     ContactEmail({
       name: name,
       emailAddress: emailAddress,
       subject: subject,
       phoneNumber: phoneNumber,
       content: content,
-    }) as React.ReactElement | any | string
+    }) as React.ReactElement
   );
 
   try {
     const data = await resend.emails.send({
-      from: `Kontaktform ${name} <${contactEmail}>`,
+      from: `Mail Fra ${name} <${contactEmail}>`,
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
-      react: emailHtml,
+      html: emailHtml as React.ReactElement | string | any,
     });
 
     console.log(`This: ${data} was sent`);
@@ -48,4 +48,7 @@ export async function POST(req: Request, res: NextApiResponse) {
     console.log(error);
     return res.json({ error } as unknown | null);
   }
+}
+function renderToStaticMarkup(arg0: any) {
+  throw new Error("Function not implemented.");
 }
