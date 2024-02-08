@@ -1,11 +1,11 @@
 {
   "name": "frigear-app",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "developer": "Morten Six",
   "scripts": {
     "dev": "next dev",
-    "email": "email dev --dir emails",
+    "email": "email dev --dir app/api/send/emails",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
