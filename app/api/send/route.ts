@@ -1,6 +1,6 @@
 "use server";
 import { Resend } from "resend";
-import ContactEmail from "@/emails/ContactEmail";
+import ContactEmail from "@/app/api/send/emails/ContactEmail";
 import * as z from "zod";
 import * as React from "react";
 
