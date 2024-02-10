@@ -45,7 +45,7 @@ export const ContactEmail = ({
               Mail fra {name} med emne {subject}
             </Heading>
             <Img
-              src={`${baseUrl}/public/six-logo.png`}
+              src={`${baseUrl}/public/FGR_logo_purple-dark.png`}
               width="33"
               height="33"
               alt="6"

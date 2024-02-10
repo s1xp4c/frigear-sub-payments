@@ -39,8 +39,9 @@ const EmailSection = () => {
   // const [emailSubmitted, setEmailSubmitted] = useState(false);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log("Force formschema");
     try {
-      await fetch("/api/send/", {
+      await fetch("api/send/", {
         method: "POST",
         headers: new Headers({ "Content-Type": "application/json" }),
         credentials: "same-origin",
@@ -52,11 +53,18 @@ const EmailSection = () => {
           content: values.content,
         }),
       });
+      return Response.json(
+        {
+          status: "Fetch Ok",
+        },
+        {
+          status: 200,
+        }
+      );
     } catch (error) {
       console.error("Error:", error);
       return null;
     }
-    console.log("POST fetched onSubmit");
   }
 
   return (
