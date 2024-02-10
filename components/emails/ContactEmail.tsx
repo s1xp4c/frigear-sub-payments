@@ -41,20 +41,25 @@ export const ContactEmail = ({
         <Preview>{previewText}</Preview>
         <Body style={main}>
           <Container style={container}>
-            <Heading style={h1}>
-              Mail fra {name} med emne {subject}
-            </Heading>
             <Img
-              src={`${baseUrl}/public/FGR_logo_purple-dark.png`}
+              src={`${baseUrl}/FGR_logo_purple-dark.png`}
               width="33"
               height="33"
               alt="6"
               key={"contactImage"}
             />
+            <Heading style={h1}>
+              {"Mail fra:"} {name}
+            </Heading>
+            <Text style={{ ...text }}>{"EMNE:"}</Text>
+            <Text style={{ ...text, marginBottom: "14px" }}> {subject}</Text>
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
             <Text style={{ ...text, marginBottom: "14px" }}>{content}</Text>
             <Text style={footer}>
-              Sendt fra email {emailAddress} Fon: +45 {phoneNumber}
+              {"Sendt fra email:"} {emailAddress} Fon: +45 {phoneNumber}
+            </Text>
+            <Text style={footer}>
+              {"Fon:"} {"+45"} {phoneNumber}
             </Text>
           </Container>
         </Body>
