@@ -1,10 +1,8 @@
-"use server";
+"use client";
 import { Resend } from "resend";
-import ContactEmail from "./emails/ContactEmail";
+import ContactEmail from "@/components/emails/ContactEmail";
 import * as z from "zod";
-import * as React from "react";
-
-import { NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const contactEmail = process.env.KONTAKT_EMAIL || "";
@@ -17,20 +15,10 @@ const sendRouteSchema = z.object({
   content: z.string().min(2),
 });
 
-export async function POST(req: Request, res: NextApiResponse) {
-  const { name, emailAddress, phoneNumber, subject, content } = await req
+export async function POST(req: NextRequest, res: NextResponse) {
+  const { name, emailAddress, subject, phoneNumber, content } = await req
     .json()
     .then((body) => sendRouteSchema.parse(body));
-
-  const emailHtml = renderToStaticMarkup(
-    ContactEmail({
-      name: name,
-      emailAddress: emailAddress,
-      subject: subject,
-      phoneNumber: phoneNumber,
-      content: content,
-    }) as React.ReactElement
-  );
 
   try {
     const data = await resend.emails.send({
@@ -38,17 +26,19 @@ export async function POST(req: Request, res: NextApiResponse) {
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
-      html: emailHtml as React.ReactElement | string | any,
+      react: ContactEmail({
+        name,
+        emailAddress,
+        subject,
+        phoneNumber,
+        content,
+      }) as React.ReactElement | string | any,
     });
 
     console.log(`This: ${data} was sent`);
-
-    return res.json({ data: data, status: 200 });
+    return res.json();
   } catch (error: unknown | null) {
     console.log(error);
-    return res.json({ error } as unknown | null);
+    return res.json();
   }
-}
-function renderToStaticMarkup(arg0: any) {
-  throw new Error("Function not implemented.");
 }

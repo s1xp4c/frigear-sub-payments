@@ -1,3 +1,4 @@
+"use client";
 import {
   Body,
   Container,
@@ -17,11 +18,11 @@ const baseUrl = process.env.VERCEL_URL
   : "";
 
 interface ContactEmailProps {
-  name: string;
-  emailAddress: string;
-  phoneNumber: string;
-  subject: string;
-  content: string;
+  name: string | any;
+  emailAddress: string | any;
+  phoneNumber: string | any;
+  subject: string | any;
+  content: string | any;
 }
 
 const ContactEmail = ({

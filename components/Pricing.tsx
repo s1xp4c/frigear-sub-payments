@@ -280,13 +280,13 @@ function LogoCloud() {
         </li>
         <li>
           <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
-            - Stemmeret ved generalforsamling
+            - Stemmeret ved generalforsamling.
           </p>
         </li>
         <li>
           <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
             - Mulighed for at foreslå og ansøge om midler eller frivillige til
-            interne Frigear projekter
+            interne Frigear projekter.
           </p>
         </li>
         <li>
@@ -297,12 +297,12 @@ function LogoCloud() {
         </li>
         <li>
           <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
-            - Halv pris på Frigear merch
+            - Rabatter på Frigear merch.
           </p>
         </li>
         <li>
           <p className="max-w-2xl m-auto mt-5 text-md text-zinc-200 sm:text-center sm:text-2xl">
-            - Adgang til Frigear appen
+            - Adgang til Frigear appen.
           </p>
         </li>
       </ul>

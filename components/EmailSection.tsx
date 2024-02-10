@@ -41,7 +41,7 @@ const EmailSection = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log("onSubmit values: ", values);
     try {
-      await fetch("./api/send/", {
+      await fetch("@/app/api/send/", {
         method: "POST",
         body: JSON.stringify({
           name: values.name,
