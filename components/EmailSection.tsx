@@ -53,14 +53,7 @@ const EmailSection = () => {
           content: values.content,
         }),
       });
-      return Response.json(
-        {
-          status: "Fetch Ok",
-        },
-        {
-          status: 200,
-        }
-      );
+      console.log("Fetch forward");
     } catch (error) {
       console.error("Error:", error);
       return null;
