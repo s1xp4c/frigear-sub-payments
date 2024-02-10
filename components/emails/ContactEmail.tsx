@@ -5,7 +5,7 @@ import {
   Head,
   Heading,
   Html,
-  Tailwind,
+  // Tailwind,
   Preview,
   Text,
   Img,
@@ -25,7 +25,7 @@ interface ContactEmailProps {
   content: string | any;
 }
 
-const ContactEmail = ({
+export const ContactEmail = ({
   name,
   emailAddress,
   subject,
@@ -35,23 +35,31 @@ const ContactEmail = ({
   const previewText = `Mail fra ${name}`;
 
   return (
-    <Html>
-      <Head />
-      <Preview>{previewText}</Preview>
-      <Body style={main}>
-        <Container style={container}>
-          <Heading style={h1}>
-            Mail fra {name} med emne {subject}
-          </Heading>
-          <Img src={`${baseUrl}/six-logo.png`} width="33" height="33" alt="6" />
-          <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
-          <Text style={{ ...text, marginBottom: "14px" }}>{content}</Text>
-          <Text style={footer}>
-            Sendt fra email {emailAddress} Fon: +45 {phoneNumber}
-          </Text>
-        </Container>
-      </Body>
-    </Html>
+    <>
+      <Html>
+        <Head />
+        <Preview>{previewText}</Preview>
+        <Body style={main}>
+          <Container style={container}>
+            <Heading style={h1}>
+              Mail fra {name} med emne {subject}
+            </Heading>
+            <Img
+              src={`${baseUrl}/public/six-logo.png`}
+              width="33"
+              height="33"
+              alt="6"
+              key={"contactImage"}
+            />
+            <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
+            <Text style={{ ...text, marginBottom: "14px" }}>{content}</Text>
+            <Text style={footer}>
+              Sendt fra email {emailAddress} Fon: +45 {phoneNumber}
+            </Text>
+          </Container>
+        </Body>
+      </Html>
+    </>
   );
 };
 

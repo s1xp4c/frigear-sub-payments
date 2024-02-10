@@ -43,6 +43,8 @@ const EmailSection = () => {
     try {
       await fetch("@/app/api/send/", {
         method: "POST",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        credentials: "same-origin",
         body: JSON.stringify({
           name: values.name,
           emailAddress: values.email,
