@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import ContactEmail from "@/components/emails/ContactEmail";
 import * as z from "zod";
 import { NextRequest, NextResponse } from "next/server";
+import { render } from "@react-email/components";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const contactEmail = process.env.KONTAKT_EMAIL || "";
@@ -20,19 +21,23 @@ export async function POST(req: NextRequest, res: NextResponse) {
     .json()
     .then((body) => sendRouteSchema.parse(body));
 
+  const emailHtml = render(
+    ContactEmail({
+      name: name,
+      emailAddress: emailAddress,
+      subject: subject,
+      phoneNumber: phoneNumber,
+      content: content,
+    }) as React.ReactElement | any | string
+  );
+
   try {
     const data = await resend.emails.send({
-      from: `Mail Fra ${name} <${contactEmail}>`,
+      from: `Kontaktform ${name} <${contactEmail}>`,
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
-      react: ContactEmail({
-        name,
-        emailAddress,
-        subject,
-        phoneNumber,
-        content,
-      }) as React.ReactElement | string | any,
+      react: emailHtml,
     });
 
     console.log(`This: ${data} was sent`);
