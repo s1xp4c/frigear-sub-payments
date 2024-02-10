@@ -1,21 +1,22 @@
 import { Resend } from "resend";
 import ContactEmail from "@/components/emails/ContactEmail";
-// import * as z from "zod";
+import * as z from "zod";
 import { NextResponse } from "next/server";
 
-// const sendRouteSchema = z.object({
-//   name: z.string().min(3),
-//   emailAddress: z.string().email(),
-//   phoneNumber: z.string().min(8),
-//   subject: z.string().min(2),
-//   content: z.string().min(2),
-// });
+const sendRouteSchema = z.object({
+  name: z.string().min(3),
+  emailAddress: z.string().email(),
+  phoneNumber: z.string().min(8),
+  subject: z.string().min(2),
+  content: z.string().min(2),
+});
 
 export async function POST(req: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
   const contactEmail = process.env.KONTAKT_EMAIL || "";
-  const { name, emailAddress, subject, phoneNumber, content } =
-    await req.json();
+  const { name, emailAddress, subject, phoneNumber, content } = await req
+    .json()
+    .then((body) => sendRouteSchema.parse(body));
 
   try {
     await resend.emails.send({
