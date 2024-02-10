@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
-      react: ContactEmail({
+      html: ContactEmail({
         name,
         emailAddress,
         subject,
