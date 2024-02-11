@@ -1,5 +1,5 @@
 "use client";
-// import { useState } from "react";
+import { useState } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaYoutubeSquare } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import Link from "next/link";
+import AnimateSphere from "./AnimateSphereSpinner/AnimateSphereSpinner";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -30,15 +31,17 @@ const formSchema = z.object({
 
 const EmailSection = () => {
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
-  // const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     console.log("Force formschema");
     try {
       await fetch("api/send/", {
@@ -57,6 +60,9 @@ const EmailSection = () => {
     } catch (error) {
       console.error("Error:", error);
       return null;
+    } finally {
+      setIsLoading(false);
+      reset();
     }
   }
 
@@ -90,9 +96,6 @@ const EmailSection = () => {
         </div>
       </div>
       <div>
-        {/* {emailSubmitted ? (
-          <p className="text-green-500 text-sm mt-2">E-mail afsendt!</p>
-        ) : ( */}
         <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-6">
             <label
@@ -208,14 +211,17 @@ const EmailSection = () => {
               </p>
             )}
           </div>
-          <button
-            type="submit"
-            className="bg-indigo-600 border-2 border-transparent hover:border-indigo-300 hover:bg-indigo-700 text-white font-medium py-2.5 px-5 rounded-lg w-full"
-          >
-            SEND BESKED
-          </button>
+          {isLoading ? (
+            <AnimateSphere />
+          ) : (
+            <button
+              type="submit"
+              className="bg-indigo-600 border-2 border-transparent hover:border-indigo-300 hover:bg-indigo-700 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+            >
+              SEND BESKED
+            </button>
+          )}
         </form>
-        {/* )} */}
       </div>
     </section>
   );
