@@ -7,9 +7,9 @@ import { FaYoutubeSquare } from "react-icons/fa";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
 import Link from "next/link";
 import AnimateSphere from "./AnimateSphereSpinner/AnimateSphereSpinner";
+import { toast } from "react-toastify";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -38,11 +38,11 @@ const EmailSection = () => {
   } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    console.log("Force formschema");
+
     try {
       await fetch("api/send/", {
         method: "POST",
@@ -56,13 +56,17 @@ const EmailSection = () => {
           content: values.content,
         }),
       });
-      console.log("Fetch forward");
-    } catch (error) {
-      console.error("Error:", error);
-      return null;
-    } finally {
+      // toast.pending('Prøver lige at sende din besked.... ')
+
+      toast.success("Jaaasj! - Din besked er på vej til en frivillig.");
       setIsLoading(false);
       reset();
+    } catch (error) {
+      toast.error(
+        "URGH! Noget gik galt. Kontakt evt. support eller prøv senere."
+      );
+
+      return null;
     }
   }
 
@@ -71,6 +75,16 @@ const EmailSection = () => {
       id="contact"
       className="grid md:grid-cols-2 my-12 md:my-12 py-44 gap-2 relative"
     >
+      {/* {toast ? (
+        <>
+          <CustomToast
+            message={toast?.message as string}
+            type={toast?.type as string | any}
+          />
+        </>
+      ) : (
+        ""
+      )} */}
       <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 to-transparent rounded-full h-80 w-80 blur-lg absolute top-[80%] -left-2 transform -translate-x-1/2 -translate-1/2 z-0"></div>
       <div className="z-10">
         <h5 className="text-xl font-bold text-white my-2">✉ Kontakt os</h5>
@@ -81,7 +95,7 @@ const EmailSection = () => {
         </p>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
           {" "}
-          Tjek evt. vores SoMe mens du venter 🐼
+          Tjek vores SoMe mens du venter 🐼
         </p>
         <div className="socials flex flex-row gap-2">
           <Link href="https://instagram.com" target="_blank">
@@ -105,7 +119,6 @@ const EmailSection = () => {
               Dit seje navn
             </label>
             <input
-              // name="name"
               type="text"
               id="name"
               required
@@ -128,7 +141,6 @@ const EmailSection = () => {
               Dit fon nummer
             </label>
             <input
-              // name="phone"
               type="tel"
               id="phone"
               className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
@@ -150,7 +162,6 @@ const EmailSection = () => {
               Din email
             </label>
             <input
-              // name="email"
               type="email"
               id="email"
               required
@@ -173,7 +184,6 @@ const EmailSection = () => {
               Emne
             </label>
             <input
-              // name="subject"
               type="text"
               id="subject"
               required
@@ -196,7 +206,6 @@ const EmailSection = () => {
               Besked
             </label>
             <textarea
-              // name="message"
               id="message"
               rows={8}
               required
