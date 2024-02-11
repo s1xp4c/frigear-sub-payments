@@ -51,6 +51,23 @@ export default async function Account() {
     revalidatePath("/account");
   };
 
+  const updateUserName = async (formData: FormData) => {
+    "use server";
+
+    const newName = formData.get("username") as string;
+    const supabase = createServerActionClient<Database>({ cookies });
+    const session = await getSession();
+    const user = session?.user;
+    const { error } = await supabase
+      .from("users")
+      .update({ user_name: newName })
+      .eq("id", user?.id as string);
+    if (error) {
+      console.log(error);
+    }
+    revalidatePath("/account");
+  };
+
   const updateEmail = async (formData: FormData) => {
     "use server";
 
@@ -94,8 +111,8 @@ export default async function Account() {
           </div>
         </Card>
         <Card
-          title="Dit navn"
-          description="Skriv det navn du gerne vil kaldes"
+          title="Dit betalings navn"
+          description="Dit navn som det fremgår af dit betalingskort. Dette kan ikke umiddelbart ændres."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
@@ -105,7 +122,7 @@ export default async function Account() {
                 form="nameForm"
                 disabled={true}
               >
-                Opdatér navn
+                Opdatér betalings navn
               </Button>
             </div>
           }
@@ -124,6 +141,36 @@ export default async function Account() {
           </div>
         </Card>
         <Card
+          title="Dit kaldenavn"
+          description="Smæk ind her hvad du kalder dig selv."
+          footer={
+            <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
+              <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
+              <Button
+                variant="slim"
+                type="submit"
+                form="userNameForm"
+                disabled={false}
+              >
+                Opdatér kaldenavn
+              </Button>
+            </div>
+          }
+        >
+          <div className="mt-8 w-full mb-4 text-xl font-semibold">
+            <form id="userNameForm" action={updateUserName}>
+              <input
+                type="text"
+                name="username"
+                className="w-1/2 p-3 rounded-md bg-zinc-800"
+                defaultValue={userDetails?.user_name ?? ""}
+                placeholder="Dit awesome navn... "
+                maxLength={64}
+              />
+            </form>
+          </div>
+        </Card>
+        <Card
           title="Din email"
           description="Her kan du ændre den e-mail adresse du bruger til login."
           footer={
@@ -135,7 +182,7 @@ export default async function Account() {
                 variant="slim"
                 type="submit"
                 form="emailForm"
-                disabled={true}
+                disabled={false}
               >
                 Opdatér Email
               </Button>
