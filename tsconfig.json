@@ -35,7 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "components/AnimateSphereSpinner/AnimateSphereSpinner.jsx"  ],
   "exclude": [
     "node_modules"
   ]

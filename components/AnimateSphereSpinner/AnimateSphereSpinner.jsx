@@ -27,28 +27,20 @@ class AnimateSphere extends Component {
     this.start();
   }
 
-  // eslint-disable-next-line etc/no-commented-out-code
   componentWillUnmount = () => {
-    // eslint-disable-next-line etc/no-commented-out-code
-    //  this.stop();
     this.mount.removeChild(this.renderer.domElement);
   };
   start = () => {
     if (!this.frameId) {
-      // eslint-disable-next-line no-undef
       this.frameId = requestAnimationFrame(this.animate);
     }
   };
-  // eslint-disable-next-line etc/no-commented-out-code
-  // stop = () => {
-  //   // eslint-disable-next-line no-undef
-  //   cancelAnimationFrame(this.frameId);
-  // };
+
   animate = () => {
     this.sphere.rotation.x += 0.008;
     this.sphere.rotation.y += 0.01;
     this.renderScene();
-    // eslint-disable-next-line no-undef
+
     this.frameId = window.requestAnimationFrame(this.animate);
   };
   renderScene = () => {
