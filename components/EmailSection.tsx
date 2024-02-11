@@ -76,7 +76,6 @@ const EmailSection = () => {
       id="contact"
       className="grid md:grid-cols-2 my-12 md:my-12 py-44 gap-2 relative"
     >
-      <CustomToast />
       <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 to-transparent rounded-full h-80 w-80 blur-lg absolute top-[80%] -left-2 transform -translate-x-1/2 -translate-1/2 z-0"></div>
       <div className="z-10">
         <h5 className="text-xl font-bold text-white my-2">✉ Kontakt os</h5>
@@ -224,6 +223,7 @@ const EmailSection = () => {
           )}
         </form>
       </div>
+      <CustomToast />
     </section>
   );
 };

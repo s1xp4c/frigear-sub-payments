@@ -2,6 +2,7 @@ import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const CustomToast = () => {
+  "use client";
   return (
     <ToastContainer
       theme="colored"
