@@ -8,9 +8,9 @@ export const stripe = new Stripe(
     // Register this as an official Stripe plugin.
     // https://stripe.com/docs/building-plugins#setappinfo
     appInfo: {
-      name: "Frigear",
-      version: "0.1.0",
-      url: "https://frigear.nu/",
+      name: "frigear-app",
+      // version: "0.1.0",
+      url: "https://frigear.nu",
     },
   }
 );
