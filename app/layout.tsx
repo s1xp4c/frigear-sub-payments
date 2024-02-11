@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import { PropsWithChildren } from "react";
 import "styles/main.css";
 import { Viewport } from "next/dist/lib/metadata/types/extra-types";
-import CustomToast from "@/components/Toast/Toast";
+// import CustomToast from "@/components/Toast/Toast";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -86,7 +86,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
             id="skip"
             className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
           >
-            <CustomToast />
             {children}
           </main>
           <Footer />
