@@ -1,15 +1,15 @@
 {
   "name": "frigear-app",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "developer": "Morten Six",
   "scripts": {
     "dev": "next dev",
-    "email": "email dev --dir app/api/send/emails",
+    "email": "email dev --dir components/emails",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "stripe:listen": "stripe listen --forward-to=https://frigear.nu/api/webhooks --project-name=frigear-subscribe",
+    "stripe:listen": "stripe listen --forward-to=localhost:3000/api/webhooks --project-name=frigear-subscribe",
     "generate-types": "npx supabase gen types typescript --project-id gpjtxflgdyedoqjlmwup --schema public > types_db.ts"
   },
   "bin": {
