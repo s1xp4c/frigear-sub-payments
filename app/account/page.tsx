@@ -88,7 +88,8 @@ export default async function Account() {
             Konto
           </h1>
           <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
-            Se og ret kontoindstillinger her
+            Hei {userDetails?.user_name ?? "dig"} 🐼 ret kontoindstillinger her
+            ✅
           </p>
         </div>
       </div>
@@ -134,7 +135,7 @@ export default async function Account() {
                 name="name"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
                 defaultValue={userDetails?.full_name ?? ""}
-                placeholder="Dit awesome navn . . . "
+                placeholder={userDetails?.full_name ?? ""}
                 maxLength={64}
               />
             </form>
