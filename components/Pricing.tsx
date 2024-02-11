@@ -6,7 +6,7 @@ import { postData } from "@/utils/helpers";
 import { getStripe } from "@/utils/stripe-client";
 import { Session, User } from "@supabase/supabase-js";
 import cn from "classnames";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 type Subscription = Database["public"]["Tables"]["subscriptions"]["Row"];
