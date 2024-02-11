@@ -79,8 +79,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="da">
       <body className="bg-black loading">
-        <CustomToast />
         <SupabaseProvider>
+          <CustomToast />
           {/* @ts-expect-error */}
           <Navbar />
           <main
