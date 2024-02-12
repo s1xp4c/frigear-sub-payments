@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import { PropsWithChildren } from "react";
 import "styles/main.css";
 import { Viewport } from "next/dist/lib/metadata/types/extra-types";
-// import CustomToast from "@/components/Toast/Toast";
+import CustomToast from "@/components/Toast/Toast";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -20,7 +20,7 @@ export const meta: Metadata = {
     default: "Non-profit | Frigear",
   },
   generator: "Next.js",
-  applicationName: "Frigear-App",
+  applicationName: "Frigear App",
   referrer: "origin-when-cross-origin",
   robots: {
     index: true,
@@ -50,7 +50,7 @@ export const meta: Metadata = {
   description:
     "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
   openGraph: {
-    title: "Frigear",
+    title: "Frigear App",
     description:
       "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
     url: "https://frigear.nu/",
@@ -70,9 +70,7 @@ export const meta: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://frigear.nu"
-  ),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "localhost:3000"),
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -89,6 +87,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             {children}
           </main>
           <Footer />
+          <CustomToast />
         </SupabaseProvider>
         <Analytics />
       </body>

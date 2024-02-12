@@ -10,7 +10,6 @@ import * as z from "zod";
 import Link from "next/link";
 import AnimateSphere from "./AnimateSphereSpinner/AnimateSphereSpinner";
 import { toast } from "react-toastify";
-import CustomToast from "./Toast/Toast";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -223,7 +222,6 @@ const EmailSection = () => {
           )}
         </form>
       </div>
-      <CustomToast />
     </section>
   );
 };
