@@ -54,12 +54,12 @@ export const meta: Metadata = {
     description:
       "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
     url: "https://frigear.nu/",
-    siteName: "Frigear",
+    siteName: "Frigear App",
     images: ["logo_with_rf_bgr.jpg", "FGR_logo_purple-dark.png"],
     type: "website",
   },
   twitter: {
-    title: "Frigear",
+    title: "Frigear App",
     description:
       "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
     site: "https://frigear.nu/",

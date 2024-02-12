@@ -54,13 +54,29 @@ export default async function Account() {
   const updateUserName = async (formData: FormData) => {
     "use server";
 
-    const newName = formData.get("username") as string;
+    const newUserName = formData.get("username") as string;
     const supabase = createServerActionClient<Database>({ cookies });
     const session = await getSession();
     const user = session?.user;
     const { error } = await supabase
       .from("users")
-      .update({ user_name: newName })
+      .update({ user_name: newUserName })
+      .eq("id", user?.id as string);
+    if (error) {
+      console.log(error);
+    }
+    revalidatePath("/account");
+  };
+  const updatePhone = async (formData: FormData) => {
+    "use server";
+
+    const newPhone = formData.get("userphone") as string;
+    const supabase = createServerActionClient<Database>({ cookies });
+    const session = await getSession();
+    const user = session?.user;
+    const { error } = await supabase
+      .from("users")
+      .update({ phone: newPhone })
       .eq("id", user?.id as string);
     if (error) {
       console.log(error);
@@ -99,7 +115,7 @@ export default async function Account() {
           description={
             subscription
               ? `Du er tilknyttet: \n ${subscription?.prices?.products?.name}.`
-              : "Du har ikke valgt et medlemskab af Frigeear endnu."
+              : "Du har ikke valgt et medlemskab af Frigear endnu. Klik på medlemsportal"
           }
           footer={<ManageSubscriptionButton session={session} />}
         >
@@ -113,7 +129,7 @@ export default async function Account() {
         </Card>
         <Card
           title="Dit betalings navn"
-          description="Dit navn som det fremgår af dit betalingskort. Dette kan ikke umiddelbart ændres."
+          description="Dit navn som det fremgår af dit betalingskort. Dette kan kun ændres hvis du skifter navn."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
               <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
@@ -122,8 +138,9 @@ export default async function Account() {
                 type="submit"
                 form="nameForm"
                 disabled={true}
+                width={35}
               >
-                Opdatér betalings navn
+                Opdatering er deaktiveret!
               </Button>
             </div>
           }
@@ -135,7 +152,7 @@ export default async function Account() {
                 name="name"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
                 defaultValue={userDetails?.full_name ?? ""}
-                placeholder={userDetails?.full_name ?? ""}
+                placeholder="Dit mega officielle fødenavn"
                 maxLength={64}
               />
             </form>
@@ -152,6 +169,7 @@ export default async function Account() {
                 type="submit"
                 form="userNameForm"
                 disabled={false}
+                width={35}
               >
                 Opdatér kaldenavn
               </Button>
@@ -165,7 +183,38 @@ export default async function Account() {
                 name="username"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
                 defaultValue={userDetails?.user_name ?? ""}
-                placeholder="Dit awesome navn... "
+                placeholder="Dit awesome kaldenavn... "
+                maxLength={64}
+              />
+            </form>
+          </div>
+        </Card>
+        <Card
+          title="Dit fonnummer"
+          description="Dit fon nummer til frivillig kontakt..."
+          footer={
+            <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
+              <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
+              <Button
+                variant="slim"
+                type="submit"
+                form="userPhoneForm"
+                disabled={false}
+                width={35}
+              >
+                Opdatér fon
+              </Button>
+            </div>
+          }
+        >
+          <div className="mt-8 w-full mb-4 text-xl font-semibold">
+            <form id="userPhoneForm" action={updatePhone}>
+              <input
+                type="text"
+                name="userphone"
+                className="w-1/2 p-3 rounded-md bg-zinc-800"
+                defaultValue={userDetails?.phone ?? ""}
+                placeholder="Dit fon nummer... "
                 maxLength={64}
               />
             </form>
@@ -184,8 +233,9 @@ export default async function Account() {
                 type="submit"
                 form="emailForm"
                 disabled={false}
+                width={35}
               >
-                Opdatér Email
+                Opdatér email
               </Button>
             </div>
           }
@@ -197,7 +247,7 @@ export default async function Account() {
                 name="email"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
                 defaultValue={user ? user.email : ""}
-                placeholder="Din email"
+                placeholder="Din gakkelakkos email"
                 maxLength={64}
               />
             </form>
