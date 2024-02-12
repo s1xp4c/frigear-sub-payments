@@ -44,20 +44,14 @@ export default async function Account() {
     const supabase = createServerActionClient<Database>({ cookies });
     const session = await getSession();
     const user = session?.user;
-    try {
-      const { error } = await supabase.from("users").upsert({
-        id: user?.id as string,
-        full_name: newName,
-        user_name: newUserName,
-        phone: newPhone,
-      });
-      if (error) throw error;
-      alert("Profile updated!");
-    } catch (error) {
-      alert("Error updating the data!");
-    } finally {
-      revalidatePath("/account");
+    const { error } = await supabase
+      .from("users")
+      .update({ full_name: newName, user_name: newUserName, phone: newPhone })
+      .eq("id", user?.id as string);
+    if (error) {
+      console.log(error);
     }
+    revalidatePath("/account");
   };
 
   const updateEmail = async (formData: FormData) => {
