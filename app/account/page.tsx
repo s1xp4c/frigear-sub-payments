@@ -44,14 +44,20 @@ export default async function Account() {
     const supabase = createServerActionClient<Database>({ cookies });
     const session = await getSession();
     const user = session?.user;
-    const { error } = await supabase
-      .from("users")
-      .update({ full_name: newName, user_name: newUserName, phone: newPhone })
-      .eq("id", user?.id as string);
-    if (error) {
-      console.log(error);
+    try {
+      const { error } = await supabase.from("users").upsert({
+        id: user?.id as string,
+        full_name: newName,
+        user_name: newUserName,
+        phone: newPhone,
+      });
+      if (error) throw error;
+      alert("Profile updated!");
+    } catch (error) {
+      alert("Error updating the data!");
+    } finally {
+      revalidatePath("/account");
     }
-    revalidatePath("/account");
   };
 
   const updateEmail = async (formData: FormData) => {
@@ -114,7 +120,7 @@ export default async function Account() {
                 type="text"
                 name="fullname"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                defaultValue={session?.user.user_metadata.name ?? ""}
+                value={userDetails?.full_name ?? ""}
                 placeholder={
                   userDetails?.full_name ?? "Dit mega officielle navn"
                 }
@@ -133,7 +139,7 @@ export default async function Account() {
                 type="text"
                 name="username"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                defaultValue={userDetails?.user_name ?? ""}
+                value={userDetails?.user_name ?? ""}
                 placeholder="Dit awesome kaldenavn... "
                 maxLength={64}
               />
@@ -150,7 +156,7 @@ export default async function Account() {
                 <Button
                   variant="slim"
                   type="submit"
-                  form="userPhoneForm"
+                  form="userDataForm"
                   disabled={false}
                 >
                   OPDATÉR BRUGERDATA
@@ -163,7 +169,7 @@ export default async function Account() {
                 type="text"
                 name="userphone"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                defaultValue={userDetails?.phone ?? ""}
+                value={userDetails?.phone ?? ""}
                 placeholder="Dit nummer... "
                 maxLength={8}
               />
@@ -175,7 +181,7 @@ export default async function Account() {
         {/* //---------------------------------- */}
 
         <Card
-          title="Din email"
+          title="Email"
           description="Her kan du ændre den e-mail adresse du bruger til login."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
@@ -199,7 +205,7 @@ export default async function Account() {
                 type="text"
                 name="email"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                defaultValue={user ? user.email : ""}
+                value={user ? user.email : ""}
                 placeholder="Din gakkelakkos email"
                 maxLength={64}
               />
