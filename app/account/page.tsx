@@ -138,7 +138,7 @@ export default async function Account() {
                 type="submit"
                 form="nameForm"
                 disabled={true}
-                width={500}
+                width={200}
               >
                 Opdatering er deaktiveret!
               </Button>
@@ -169,7 +169,7 @@ export default async function Account() {
                 type="submit"
                 form="userNameForm"
                 disabled={false}
-                width={35}
+                width={200}
               >
                 Opdatér kaldenavn
               </Button>
@@ -194,13 +194,13 @@ export default async function Account() {
           description="Dit fon nummer til frivillig kontakt..."
           footer={
             <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-              <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
+              <p className="pb-4 sm:pb-0">8 tal</p>
               <Button
                 variant="slim"
                 type="submit"
                 form="userPhoneForm"
                 disabled={false}
-                width={35}
+                width={200}
               >
                 Opdatér fon
               </Button>
@@ -215,7 +215,7 @@ export default async function Account() {
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
                 defaultValue={userDetails?.phone ?? ""}
                 placeholder="Dit fon nummer... "
-                maxLength={64}
+                maxLength={8}
               />
             </form>
           </div>
@@ -233,7 +233,7 @@ export default async function Account() {
                 type="submit"
                 form="emailForm"
                 disabled={false}
-                width={35}
+                width={200}
               >
                 Opdatér email
               </Button>
