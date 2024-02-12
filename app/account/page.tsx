@@ -138,7 +138,7 @@ export default async function Account() {
                 type="submit"
                 form="nameForm"
                 disabled={true}
-                width={35}
+                width={500}
               >
                 Opdatering er deaktiveret!
               </Button>
