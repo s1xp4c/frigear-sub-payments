@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
-import { FaYoutubeSquare } from "react-icons/fa";
+// import { FaYoutubeSquare } from "react-icons/fa";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

@@ -78,6 +78,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="da">
       <body className="bg-black loading">
         <SupabaseProvider>
+          <CustomToast />
           {/* @ts-expect-error */}
           <Navbar />
           <main
@@ -87,7 +88,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
             {children}
           </main>
           <Footer />
-          <CustomToast />
         </SupabaseProvider>
         <Analytics />
       </body>
