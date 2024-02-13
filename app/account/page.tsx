@@ -37,9 +37,9 @@ export default async function Account() {
   const updateUserData = async (formData: FormData) => {
     "use server";
 
-    const newName = formData.get("fullname") as string;
+    const newName = formData.get("fullName") as string;
     const newUserName = formData.get("username") as string;
-    const newPhone = formData.get("userphone") as string;
+    const newPhone = formData.get("userPhone") as string;
 
     const supabase = createServerActionClient<Database>({ cookies });
     const session = await getSession();
@@ -110,11 +110,13 @@ export default async function Account() {
             description="Dit navn som det fremgår af dit betalingskort. Dette kan kun ændres hvis du skifter navn."
           >
             <div className="mt-8 w-full mb-4 text-xl font-semibold">
+              <label htmlFor="fullName"></label>
               <input
+                id="fullName"
                 type="text"
-                name="fullname"
+                name="fullName"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                value={userDetails?.full_name ?? ""}
+                defaultValue={userDetails?.full_name ?? ""}
                 placeholder={
                   userDetails?.full_name ?? "Dit mega officielle navn"
                 }
@@ -129,11 +131,13 @@ export default async function Account() {
             description="Smæk ind her hvad du kalder dig selv."
           >
             <div className="mt-8 w-full mb-4 text-xl font-semibold">
+              <label htmlFor="username"></label>
               <input
+                id="username"
                 type="text"
                 name="username"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                value={userDetails?.user_name ?? ""}
+                defaultValue={userDetails?.user_name ?? ""}
                 placeholder="Dit awesome kaldenavn... "
                 maxLength={64}
               />
@@ -146,7 +150,7 @@ export default async function Account() {
             description="Dit fon nummer til frivillig kontakt..."
             footer={
               <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-                <p className="pb-4 sm:pb-0">Fyr dine brugerdata afsted</p>
+                <p className="pb-4 sm:pb-0">Afsted med data</p>
                 <Button
                   variant="slim"
                   type="submit"
@@ -159,11 +163,13 @@ export default async function Account() {
             }
           >
             <div className="mt-8 w-full mb-4 text-xl font-semibold">
+              <label htmlFor="userPhone"></label>
               <input
+                id="userPhone"
                 type="text"
-                name="userphone"
+                name="userPhone"
                 className="w-1/2 p-3 rounded-md bg-zinc-800"
-                value={userDetails?.phone ?? ""}
+                defaultValue={userDetails?.phone ?? ""}
                 placeholder="Dit nummer... "
                 maxLength={8}
               />
