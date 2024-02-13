@@ -153,7 +153,7 @@ export default async function Account() {
                 <p className="pb-4 sm:pb-0">Afsted med data</p>
                 <Button
                   variant="slim"
-                  type="submit"
+                  onClick={() => onsubmit}
                   form="userDataForm"
                   disabled={false}
                 >
