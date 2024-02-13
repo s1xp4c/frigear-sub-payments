@@ -7,38 +7,38 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { AnimateSphereSpinner } from "@/components/AnimateSphereSpinner/";
 // import ManageSubscriptionButton from "./ManageSubscriptionButton";
-import {
-  //   getSession,
-  getSubscription,
-} from "@/app/supabase-server";
+// import {
+//     getSession,
+//   getSubscription,
+// } from "@/app/supabase-server";
 import Button from "@/components/ui/Button";
 // import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ReactNode } from "react";
+// import { ReactNode } from "react";
 import { toast } from "react-toastify";
 // import { Session } from "inspector";
 
-interface Props {
-  title: string;
-  description?: string;
-  footer?: ReactNode;
-  children: ReactNode;
-}
+// interface Props {
+//   title: string;
+//   description?: string;
+//   footer?: ReactNode;
+//   children: ReactNode;
+// }
 
-function Card({ title, description, footer, children }: Props) {
-  return (
-    <div className="w-full max-w-3xl m-auto my-8 border rounded-md p border-zinc-700">
-      <div className="px-5 py-4">
-        <h3 className="mb-1 text-2xl font-medium">{title}</h3>
-        <p className="text-zinc-300">{description}</p>
-        {children}
-      </div>
-      <div className="p-4 border-t rounded-b-md border-zinc-700 bg-zinc-900 text-zinc-500">
-        {footer}
-      </div>
-    </div>
-  );
-}
+// function Card({ title, description, footer, children }: Props) {
+//   return (
+//     <div className="w-full max-w-3xl m-auto my-8 border rounded-md p border-zinc-700">
+//       <div className="px-5 py-4">
+//         <h3 className="mb-1 text-2xl font-medium">{title}</h3>
+//         <p className="text-zinc-300">{description}</p>
+//         {children}
+//       </div>
+//       <div className="p-4 border-t rounded-b-md border-zinc-700 bg-zinc-900 text-zinc-500">
+//         {footer}
+//       </div>
+//     </div>
+//   );
+// }
 
 export default function AccountForm({ user }: { user: User | null }) {
   const supabase = createClientComponentClient<Database>();
@@ -84,8 +84,8 @@ export default function AccountForm({ user }: { user: User | null }) {
 
   useEffect(() => {
     getProfile();
-    getSubscription();
-  }, [user, [getProfile, getSubscription]]);
+    // getSubscription();
+  }, [user, [getProfile]]);
 
   async function updateProfile({
     username,
