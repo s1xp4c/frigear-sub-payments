@@ -182,29 +182,32 @@ export interface Database {
         Row: {
           avatar_url: string | null;
           full_name: string | null;
-          user_name: string | null;
+          username: string | null;
           id: string;
           phone: string | null;
           payment_method: Json | null;
           billing_address: Json | null;
+          subscription_type: string | null;
         };
         Insert: {
           avatar_url?: string | null;
           full_name?: string | null;
-          user_name?: string | null;
+          username?: string | null;
           id: string;
           phone?: string | null;
           payment_method?: Json | null;
           billing_address?: Json | null;
+          subscription_type?: string | null;
         };
         Update: {
           avatar_url?: string | null;
           full_name?: string | null;
-          user_name?: string | null;
+          username?: string | null;
           id?: string;
           phone?: string | null;
           payment_method?: Json | null;
           billing_address?: Json | null;
+          subscription_type?: string | null;
         };
         Relationships: [
           {
