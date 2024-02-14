@@ -230,8 +230,9 @@ export interface Database {
         | "day"
         | "week"
         | "month"
-        | "Every 3 months"
-        | "year";
+        | "every 3 months"
+        | "year"
+        | "life";
       pricing_type: "one_time" | "recurring";
       subscription_status:
         | "trialing"
