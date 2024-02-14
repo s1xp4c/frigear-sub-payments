@@ -56,17 +56,13 @@ const EmailSection = () => {
           content: values.content,
         }),
       });
-      // toast.pending('Prøver lige at sende din besked.... ')
-
+    } catch (error) {
+      toast.error("URGH! Noget gik galt. prøv lige senere.");
+      return null;
+    } finally {
       toast.success("Jaaasj! - Din besked er på vej til en frivillig.");
       setIsLoading(false);
       reset();
-    } catch (error) {
-      toast.error(
-        "URGH! Noget gik galt. Kontakt evt. support eller prøv senere."
-      );
-
-      return null;
     }
   }
 

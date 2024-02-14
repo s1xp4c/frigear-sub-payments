@@ -6,7 +6,6 @@ import { Metadata } from "next";
 import { PropsWithChildren } from "react";
 import "styles/main.css";
 import { Viewport } from "next/dist/lib/metadata/types/extra-types";
-import CustomToast from "@/components/Toast/Toast";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -78,7 +77,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="da">
       <body className="bg-black loading">
         <SupabaseProvider>
-          <CustomToast />
           {/* @ts-expect-error */}
           <Navbar />
           <main

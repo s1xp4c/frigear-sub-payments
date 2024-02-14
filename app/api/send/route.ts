@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
   try {
     await resend.emails.send({
-      from: `Kontaktform ${name} <${contactEmail}>`,
+      from: `Kontakt ${name} <${contactEmail}>`,
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,

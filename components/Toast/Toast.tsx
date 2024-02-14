@@ -1,3 +1,4 @@
+"use client";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,6 +17,7 @@ const CustomToast = () => {
       draggable
       pauseOnHover
       transition={Bounce}
+      className={"z-50 absolute"}
     />
   );
 };
