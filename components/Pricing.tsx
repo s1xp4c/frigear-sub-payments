@@ -29,7 +29,7 @@ interface Props {
   subscription: SubscriptionWithProduct | null;
 }
 
-type BillingInterval = "month" | "quarter" | "year";
+type BillingInterval = "month" | "Every 3 months" | "year";
 
 export default function Pricing({
   session,
@@ -180,12 +180,12 @@ export default function Pricing({
                 Månedlig
               </button>
             )}
-            {intervals.includes("month") && (
+            {intervals.includes("Every 3 months") && (
               <button
-                onClick={() => setBillingInterval("month")}
+                onClick={() => setBillingInterval("Every 3 months")}
                 type="button"
                 className={`${
-                  billingInterval === "month"
+                  billingInterval === "Every 3 months"
                     ? "relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white"
                     : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
