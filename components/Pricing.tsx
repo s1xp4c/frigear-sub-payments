@@ -29,7 +29,7 @@ interface Props {
   subscription: SubscriptionWithProduct | null;
 }
 
-type BillingInterval = "month" | "every 3 months" | "year";
+type BillingInterval = "månedlig" | "kvartals" | "årlig";
 
 export default function Pricing({
   session,
@@ -46,7 +46,7 @@ export default function Pricing({
   );
   const router = useRouter();
   const [billingInterval, setBillingInterval] =
-    useState<BillingInterval>("year");
+    useState<BillingInterval>("årlig");
   const [priceIdLoading, setPriceIdLoading] = useState<string>();
 
   const handleCheckout = async (price: Price) => {
@@ -167,12 +167,12 @@ export default function Pricing({
           </h1>
 
           <div className="relative self-center mt-6 bg-zinc-900 rounded-lg p-0.5 flex sm:mt-8 border border-zinc-800">
-            {intervals.includes("month") && (
+            {intervals.includes("månedlig") && (
               <button
-                onClick={() => setBillingInterval("month")}
+                onClick={() => setBillingInterval("månedlig")}
                 type="button"
                 className={`${
-                  billingInterval === "month"
+                  billingInterval === "månedlig"
                     ? "relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white"
                     : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
@@ -180,12 +180,12 @@ export default function Pricing({
                 Månedlig
               </button>
             )}
-            {intervals.includes("every 3 months") && (
+            {intervals.includes("kvartals") && (
               <button
-                onClick={() => setBillingInterval("every 3 months")}
+                onClick={() => setBillingInterval("kvartals")}
                 type="button"
                 className={`${
-                  billingInterval === "every 3 months"
+                  billingInterval === "kvartals"
                     ? "relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white"
                     : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
@@ -193,12 +193,12 @@ export default function Pricing({
                 Kvartals
               </button>
             )}
-            {intervals.includes("year") && (
+            {intervals.includes("årlig") && (
               <button
-                onClick={() => setBillingInterval("year")}
+                onClick={() => setBillingInterval("årlig")}
                 type="button"
                 className={`${
-                  billingInterval === "year"
+                  billingInterval === "årlig"
                     ? "relative w-1/2 bg-zinc-700 border-zinc-800 shadow-sm text-white"
                     : "ml-0.5 relative w-1/2 border border-transparent text-zinc-400"
                 } rounded-md m-1 py-2 text-sm font-medium whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 focus:z-10 sm:w-auto sm:px-8`}
