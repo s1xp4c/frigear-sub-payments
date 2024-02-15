@@ -1,49 +1,21 @@
-import Link from "next/link";
-import { createServerSupabaseClient } from "@/app/supabase-server";
-
-import Logo from "@/components/icons/Logo";
-import SignOutButton from "./SignOutButton";
-
-import s from "./Navbar.module.css";
+import { createClient } from '@/utils/supabase/server';
+import s from './Navbar.module.css';
+import Navlinks from './Navlinks';
 
 export default async function Navbar() {
-  const supabase = createServerSupabaseClient();
+  const supabase = createClient();
+
   const {
-    data: { user },
+    data: { user }
   } = await supabase.auth.getUser();
 
   return (
     <nav className={s.root}>
       <a href="#skip" className="sr-only focus:not-sr-only">
-        Skip to content
+        Skip lortet
       </a>
       <div className="max-w-6xl px-6 mx-auto">
-        <div className="relative flex flex-row justify-between py-4 align-center uppercase md:py-6">
-          <div className="flex items-center flex-1">
-            <Link href="/" className={s.logo} aria-label="Logo">
-              <Logo />
-            </Link>
-            <nav className="ml-6 space-x-2 lg:block">
-              <Link href="/pricing" className={s.link}>
-                Medlemskab
-              </Link>
-              {user && (
-                <Link href="/account" className={s.link}>
-                  Konto
-                </Link>
-              )}
-            </nav>
-            <div className="flex justify-end flex-1 space-x-2">
-              {user ? (
-                <SignOutButton />
-              ) : (
-                <Link href="/signin" className={s.link}>
-                  Log ind
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
+        <Navlinks user={user} />
       </div>
     </nav>
   );

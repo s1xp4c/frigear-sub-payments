@@ -1,26 +1,26 @@
-import SupabaseProvider from "./supabase-provider";
+
 import Footer from "@/components/ui/Footer";
 import Navbar from "@/components/ui/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from 'react';
 import "styles/main.css";
-import { Viewport } from "next/dist/lib/metadata/types/extra-types";
+import { Toaster } from '@/components/ui/Toasts/toaster';
+import { getURL } from '@/utils/helpers';
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-};
-
-export const meta: Metadata = {
+const meta = {
   title: {
     template: "%s | Frigear",
     default: "Non-profit | Frigear",
   },
-  generator: "Next.js",
-  applicationName: "Frigear App",
-  referrer: "origin-when-cross-origin",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  description:
+  "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
+  cardImage: '/og.png',
   robots: {
     index: true,
     follow: true,
@@ -34,6 +34,15 @@ export const meta: Metadata = {
       "max-snippet": -1,
     },
   },
+  favicon: '/favicon.ico',
+  url: getURL()
+};
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+  generator: "Next.js",
+  applicationName: "Frigear App",
+  referrer: "origin-when-cross-origin",
   alternates: {
     canonical: "/",
     languages: {
@@ -45,39 +54,39 @@ export const meta: Metadata = {
   keywords: [
     "Foreningen Frigear, Frigear, Non-profit, Frivillige, Roskilde festival frivillig, bar, Arena scenen, Frigear Bar, Forening, Almennyttig, Frivillig-drevet, Frivillig-forening, Foreningsliv",
   ],
+  authors: [{ name: 'Morten Six', url: 'https://block-folio.netlify.app/' }],
   creator: "Morten Six",
-  description:
-    "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
+  publisher: 'Frigear',
+  icons: { icon: meta.favicon },
+  metadataBase: new URL(meta.url),
   openGraph: {
-    title: "Frigear App",
-    description:
-      "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
-    url: "https://frigear.nu/",
+    url: meta.url,
+    title: meta.title,
+    description: meta.description,
+    images: [meta.cardImage],
+    type: 'website',
     siteName: "Frigear App",
-    images: ["logo_with_rf_bgr.jpg", "FGR_logo_purple-dark.png"],
-    type: "website",
   },
   twitter: {
-    title: "Frigear App",
-    description:
-      "Foreningen Frigear faciliterer, støtter, og driver frivillig non-profit projekter, med fokus på medlemsindflydelse og bæredygtighed.",
+    card: 'summary_large_image',
     site: "https://frigear.nu/",
-    images: ["logo_with_rf_bgr.jpg", "FGR_logo_purple-dark.png"],
+    creator: "Morten Six",
+    title: meta.title,
+    description: meta.description,
+    images: [meta.cardImage],
   },
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "localhost:3000"),
 };
+}
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="da">
       <body className="bg-black loading">
-        <SupabaseProvider>
-          {/* @ts-expect-error */}
           <Navbar />
           <main
             id="skip"
@@ -86,7 +95,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
             {children}
           </main>
           <Footer />
-        </SupabaseProvider>
+          <Suspense>
+          <Toaster />
+        </Suspense>
         <Analytics />
       </body>
     </html>

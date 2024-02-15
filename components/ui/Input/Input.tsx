@@ -1,9 +1,9 @@
-import React, { InputHTMLAttributes, ChangeEvent } from "react";
-import cn from "classnames";
+import React, { InputHTMLAttributes, ChangeEvent } from 'react';
+import cn from 'classnames';
 
-import s from "./Input.module.css";
+import s from './Input.module.css';
 
-interface Props extends Omit<InputHTMLAttributes<any>, "onChange"> {
+interface Props extends Omit<InputHTMLAttributes<any>, 'onChange'> {
   className?: string;
   onChange: (value: string) => void;
 }
@@ -24,7 +24,7 @@ const Input = (props: Props) => {
       <input
         className={rootClassName}
         onChange={handleOnChange}
-        autoComplete="on"
+        autoComplete="off"
         autoCorrect="off"
         autoCapitalize="off"
         spellCheck="false"

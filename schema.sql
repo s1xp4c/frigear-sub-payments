@@ -6,8 +6,6 @@ create table users (
   -- UUID from auth.users
   id uuid references auth.users not null primary key,
   full_name text,
-  user_name text,
-  phone text,
   avatar_url text,
   -- The customer's billing address, stored in JSON format.
   billing_address jsonb,
@@ -24,8 +22,8 @@ create policy "Can update own user data." on users for update using (auth.uid() 
 create function public.handle_new_user() 
 returns trigger as $$
 begin
-  insert into public.users (id, full_name, user_name, phone, avatar_url)
-  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url', new.raw_user_meta_data->>'user_name', new.raw_user_meta_data->>'phone');
+  insert into public.users (id, full_name, avatar_url)
+  values (new.id, new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'avatar_url');
   return new;
 end;
 $$ language plpgsql security definer;
@@ -72,7 +70,7 @@ create policy "Allow public read-only access." on products for select using (tru
 * Note: prices are created and managed in Stripe and synced to our DB via Stripe webhooks.
 */
 create type pricing_type as enum ('one_time', 'recurring');
-create type pricing_plan_interval as enum ("day" , "week" , 'month', 'quarter', 'year', 'life');
+create type pricing_plan_interval as enum ('day', 'week', 'month', 'year');
 create table prices (
   -- Price ID from Stripe, e.g. price_1234.
   id text primary key,
