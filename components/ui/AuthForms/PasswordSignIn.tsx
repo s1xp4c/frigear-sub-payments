@@ -6,6 +6,7 @@ import { signInWithPassword } from '@/utils/auth-helpers/server';
 import { handleRequest } from '@/utils/auth-helpers/client';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 // Define prop type with allowEmail boolean
 interface PasswordSignInProps {
@@ -17,6 +18,7 @@ export default function PasswordSignIn({
   allowEmail,
   redirectMethod
 }: PasswordSignInProps) {
+  const { t } = useTranslation('auth');
   // const router = redirectMethod === 'client' ? useRouter() : null;
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,10 +40,11 @@ export default function PasswordSignIn({
       >
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{t('signin.email_label')}</label>
             <input
               id="email"
-              placeholder="name@example.com"
+              placeholder={t('signin.email_placeholder')}
+
               type="email"
               name="email"
               autoCapitalize="none"

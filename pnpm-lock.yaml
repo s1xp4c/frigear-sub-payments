@@ -59,6 +59,15 @@ dependencies:
   framer-motion:
     specifier: ^11.0.2
     version: 11.0.5(react-dom@18.2.0)(react@18.2.0)
+  i18next:
+    specifier: ^23.8.2
+    version: 23.8.2
+  i18next-browser-languagedetector:
+    specifier: ^7.2.0
+    version: 7.2.0
+  i18next-http-backend:
+    specifier: ^2.4.3
+    version: 2.4.3
   lucide-react:
     specifier: 0.330.0
     version: 0.330.0(react@18.2.0)
@@ -83,6 +92,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.50.0
     version: 7.50.1(react@18.2.0)
+  react-i18next:
+    specifier: ^14.0.5
+    version: 14.0.5(i18next@23.8.2)(react-dom@18.2.0)(react@18.2.0)
   react-icons:
     specifier: ^5.0.1
     version: 5.0.1(react@18.2.0)
@@ -4062,6 +4074,14 @@ packages:
       vary: 1.1.2
     dev: false
 
+  /cross-fetch@4.0.0:
+    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
+    dependencies:
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -5238,8 +5258,22 @@ packages:
       - supports-color
     dev: true
 
+  /i18next-browser-languagedetector@7.2.0:
+    resolution: {integrity: sha512-U00DbDtFIYD3wkWsr2aVGfXGAj2TgnELzOX9qv8bT0aJtvPV9CRO77h+vgmHFBMe7LAxdwvT/7VkCWGya6L3tA==}
+    dependencies:
+      '@babel/runtime': 7.23.9
+    dev: false
+
   /i18next-fs-backend@2.3.1:
     resolution: {integrity: sha512-tvfXskmG/9o+TJ5Fxu54sSO5OkY6d+uMn+K6JiUGLJrwxAVfer+8V3nU8jq3ts9Pe5lXJv4b1N7foIjJ8Iy2Gg==}
+    dev: false
+
+  /i18next-http-backend@2.4.3:
+    resolution: {integrity: sha512-jo2M03O6n1/DNb51WSQ8PsQ0xEELzLZRdYUTbf17mLw3rVwnJF9hwNgMXvEFSxxb+N8dT+o0vtigA6s5mGWyPA==}
+    dependencies:
+      cross-fetch: 4.0.0
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /i18next@23.8.2:
@@ -6088,6 +6122,18 @@ packages:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
     dev: true
+
+  /node-fetch@2.7.0:
+    resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: false
 
   /node-fetch@3.3.2:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}

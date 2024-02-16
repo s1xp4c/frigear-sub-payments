@@ -1,4 +1,4 @@
-// next-i18next.config.js
+// next-i18next.config.ts
 module.exports = {
     i18n: {
       defaultLocale: 'da',

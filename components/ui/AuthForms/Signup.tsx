@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from 'next-i18next';
 import Button from '@/components/ui/Button';
 import React from 'react';
 import Link from 'next/link';
@@ -15,6 +16,9 @@ interface SignUpProps {
 }
 
 export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
+  const { t } = useTranslation('auth');
+  console.log(t('signin.email_label'));
+
   // const router = redirectMethod === 'client' ? useRouter() : null;
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,12 +38,14 @@ export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
         className="mb-4"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            <label htmlFor="email">Email</label>
+        <div className="grid gap-4">
+          <div className="grid gap-2">
+            <label htmlFor="email">{'Email'}</label>
+            {/* <label htmlFor="email">{t('signin.email_label')}</label> */}
             <input
               id="email"
-              placeholder="name@example.com"
+              placeholder={'Din awesome email...'}
+              // placeholder={t('signin.email_placeholder')}
               type="email"
               name="email"
               autoCapitalize="none"
@@ -47,36 +53,38 @@ export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
               autoCorrect="off"
               className="w-full p-3 rounded-md bg-zinc-800"
             />
-            <label htmlFor="password">Password</label>
+           <label htmlFor="password">{'Password'}</label>
+           {/* <label htmlFor="password">{t('signin.password_label')}</label> */}
             <input
               id="password"
-              placeholder="Password"
+              placeholder={'Dit mega svære password...'}
+              // placeholder={t('signin.password_placeholder')}
               type="password"
               name="password"
               autoComplete="current-password"
-              className="w-full p-3 rounded-md bg-zinc-800"
+              className="w-full p-3 rounded-md bg-zinc-800 mb-2"
             />
           </div>
           <Button
             variant="slim"
             type="submit"
-            className="mt-1"
+            className="mb-3"
             loading={isSubmitting}
           >
-            Sign up
+           OPRET
           </Button>
         </div>
       </form>
-      <p>Already have an account?</p>
-      <p>
-        <Link href="/signin/password_signin" className="font-light text-sm">
-          Sign in with email and password
+      <p className='mb-4'>Har du allerede en konto?</p>
+      <p className='mb-1'>
+        <Link href="/signin/password_signin" className="font-light text-sm ">
+          Log ind med email og password.
         </Link>
       </p>
       {allowEmail && (
         <p>
           <Link href="/signin/email_signin" className="font-light text-sm">
-            Sign in via magic link
+            Hop ind via magic link.
           </Link>
         </p>
       )}
