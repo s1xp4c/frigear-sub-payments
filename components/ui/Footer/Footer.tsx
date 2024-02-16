@@ -2,6 +2,7 @@ import GitHub from "@/components/icons/GitHub";
 import Logo from "@/components/icons/Logo";
 import Link from "next/link";
 import Image from "next/image";
+import Logo_six from "@/components/icons/Logo_six";
 
 export default function Footer() {
   return (
@@ -83,12 +84,8 @@ export default function Footer() {
             href="https://block-folio.netlify.app/"
             aria-label="Portfolio link"
           >
-            <Image
-              src="/six_logo.png"
-              width={25}
-              height={25}
-              alt="Blockstarter Logo"
-              className="inline-block mx-3 text-white"
+            <Logo_six
+             
             />
             <span className="text-white">s1x</span>
           </a>

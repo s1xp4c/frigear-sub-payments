@@ -150,7 +150,7 @@ export async function signInWithPassword(formData: FormData) {
       error.message
     );
   } else if (data.user) {
-    cookieStore.set('preferredSignInView', 'password_signin', { path: '/' });
+    cookieStore.set('preferredSignInView', 'password_signin', { path: '/account/' });
     redirectPath = getStatusRedirect('/', 'Success!', 'You are now signed in.');
   } else {
     redirectPath = getErrorRedirect(

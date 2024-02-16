@@ -11,6 +11,7 @@ import {
   Hr,
 } from "@react-email/components";
 import * as React from "react";
+import Logo_purple from "../icons/Logo_purple";
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -40,12 +41,8 @@ export const ContactEmail = ({
         <Preview>{previewText}</Preview>
         <Body style={main}>
           <Container style={container}>
-            <Img
-              src={`${baseUrl}/FGR_logo_purple-dark.png`}
-              width="33"
-              height="33"
-              alt="6"
-              key={"contactImage"}
+            <Logo_purple
+              
             />
             <Heading style={h1}>
               {"Mail fra:"} {name}
