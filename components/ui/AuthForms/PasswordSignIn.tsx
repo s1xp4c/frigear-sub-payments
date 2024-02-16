@@ -6,7 +6,7 @@ import { signInWithPassword } from '@/utils/auth-helpers/server';
 import { handleRequest } from '@/utils/auth-helpers/client';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import { useTranslation } from 'next-i18next';
+// import { useTranslation } from 'next-i18next';
 
 // Define prop type with allowEmail boolean
 interface PasswordSignInProps {
@@ -18,7 +18,7 @@ export default function PasswordSignIn({
   allowEmail,
   redirectMethod
 }: PasswordSignInProps) {
-  const { t } = useTranslation('auth');
+  // const { t } = useTranslation('auth');
   // const router = redirectMethod === 'client' ? useRouter() : null;
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,10 +40,12 @@ export default function PasswordSignIn({
       >
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <label htmlFor="email">{t('signin.email_label')}</label>
+            <label htmlFor="email">{'Email'}</label>
+            {/* <label htmlFor="email">{t('signin.email_label')}</label> */}
             <input
               id="email"
-              placeholder={t('signin.email_placeholder')}
+              placeholder={'Din najs email...'}
+              // placeholder={t('signin.email_placeholder')}
 
               type="email"
               name="email"
@@ -74,19 +76,21 @@ export default function PasswordSignIn({
       </form>
       <p>
         <Link href="/signin/forgot_password" className="font-light text-sm">
-          {"Forgot your password?"}
+          {"Glemt dit password?"}
+          {/* {"Forgot your password?"} */}
         </Link>
       </p>
       {allowEmail && (
         <p>
           <Link href="/signin/email_signin" className="font-light text-sm">
-            {"Sign in via magic link"}
+            {"Log ind med magic link"}
+            {/* {"Sign in via magic link"} */}
           </Link>
         </p>
       )}
       <p>
         <Link href="/signin/signup" className="font-light text-sm">
-          {"Don't have an account? Sign up"}
+          {"Ingen Frigear konto? Opret!"}
         </Link>
       </p>
     </div>

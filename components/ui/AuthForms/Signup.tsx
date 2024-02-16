@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslation } from 'next-i18next';
+// import { useTranslation } from 'next-i18next';
 import Button from '@/components/ui/Button';
 import React from 'react';
 import Link from 'next/link';
@@ -16,8 +16,8 @@ interface SignUpProps {
 }
 
 export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
-  const { t } = useTranslation('auth');
-  console.log(t('signin.email_label'));
+  // const { t } = useTranslation('auth');
+  // console.log(t('signin.email_label'));
 
   // const router = redirectMethod === 'client' ? useRouter() : null;
   const router = useRouter();

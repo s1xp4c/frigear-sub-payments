@@ -66,8 +66,8 @@ export default async function SignIn({
               : viewProp === 'update_password'
                 ? 'Update Password'
                 : viewProp === 'signup'
-                  ? 'Sign Up'
-                  : 'Sign In'
+                  ? 'Opret'
+                  : 'Log ind'
           }
         >
           {viewProp === 'password_signin' && (
