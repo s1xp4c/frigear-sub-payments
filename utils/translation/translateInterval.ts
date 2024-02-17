@@ -3,11 +3,11 @@
 export const translateInterval = (interval: string, count: number) => {
     switch (interval) {
       case 'month':
-        if (count === 1) return 'ÅRLIG';
+        if (count === 1) return 'MÅNED';
         if (count === 3) return 'KVARTAL';
         break;
       case 'year':
-        return 'MÅNED';
+        return 'ÅRLIG';
       default:
         return 'SUPPORT';
     }
