@@ -51,9 +51,7 @@ export interface Database {
           active?: boolean | null;
           currency?: string | null;
           id: string;
-          interval?:
-            | Database["public"]["Enums"]["pricing_plan_interval"]
-            | null;
+          interval?: Database["public"]["Enums"]["pricing_plan_interval"] | null;
           interval_count?: number | null;
           product_id?: string | null;
           trial_period_days?: number | null;
@@ -64,9 +62,7 @@ export interface Database {
           active?: boolean | null;
           currency?: string | null;
           id?: string;
-          interval?:
-            | Database["public"]["Enums"]["pricing_plan_interval"]
-            | null;
+          interval?: Database["public"]["Enums"]["pricing_plan_interval"] | null;
           interval_count?: number | null;
           product_id?: string | null;
           trial_period_days?: number | null;
@@ -219,7 +215,7 @@ export interface Database {
       [_ in never]: never;
     };
     Enums: {
-      pricing_plan_interval: "day" | "week" | "month" | "every 3 months" | "year" | "life";
+      pricing_plan_interval: "day" | "week" | "month" | "quarter" |"year" | "life";
       pricing_type: "one_time" | "recurring";
       subscription_status:
         | "trialing"

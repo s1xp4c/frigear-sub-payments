@@ -10,9 +10,9 @@ export const stripe = new Stripe(
     // Register this as an official Stripe plugin.
     // https://stripe.com/docs/building-plugins#setappinfo
     appInfo: {
-      name: 'Next.js Subscription Starter',
+      name: 'Frigear App',
       version: '0.0.0',
-      url: 'https://github.com/vercel/nextjs-subscription-payments'
+      url: 'https://github.com/s1xp4c/frigear-sub-payments/'
     }
   }
 );
