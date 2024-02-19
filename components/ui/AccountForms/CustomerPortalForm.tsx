@@ -69,10 +69,13 @@ export default function CustomerPortalForm({ subscription }: Props) {
     >
       <div className="mt-8 mb-4 text-xl font-semibold">
         {subscription ? (
-          `${subscriptionPrice} /${translateInterval(subscription?.prices?.interval as string, subscription?.prices?.interval_count as number)} {"\n *Betalingsgebyr er indeholdt i beløb"}`
+          `${subscriptionPrice} /${translateInterval(subscription?.prices?.interval as string, subscription?.prices?.interval_count as number)}`
         ) : (
           <Link href="/pricing">Vælg medlemskab</Link>
         )}
+        <span className="text-xs text-zinc-500">
+          *Betalingsgebyr er indeholdt i beløb
+        </span>
       </div>
     </Card>
   );
