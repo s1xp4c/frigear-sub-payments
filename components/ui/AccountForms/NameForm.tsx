@@ -7,14 +7,14 @@ import { handleRequest } from '@/utils/auth-helpers/client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function NameForm({ userName }: { userName: string }) {
+export default function NameForm({ fullName }: { fullName: string }) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
     // Check if the new name is the same as the old name
-    if (e.currentTarget.fullName.value === userName) {
+    if (e.currentTarget.fullName.value === fullName) {
       e.preventDefault();
       setIsSubmitting(false);
       return;
@@ -26,17 +26,17 @@ export default function NameForm({ userName }: { userName: string }) {
   return (
     <Card
       title="Your Name"
-      description="Please enter your full name, or a display name you are comfortable with."
+      description="Her er dit smækre fulde navn. Du kan opdatere det hvis du vil, men vi bruger det kun til at finde dig i vrimlen og det vises ikke offenligt."
       footer={
         <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
-          <p className="pb-4 sm:pb-0">64 characters maximum</p>
+          <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
           <Button
             variant="slim"
             type="submit"
             form="nameForm"
             loading={isSubmitting}
           >
-            Update Name
+            Opdatér fuldt navn
           </Button>
         </div>
       }
@@ -47,8 +47,8 @@ export default function NameForm({ userName }: { userName: string }) {
             type="text"
             name="fullName"
             className="w-1/2 p-3 rounded-md bg-zinc-800"
-            defaultValue={userName}
-            placeholder="Your name"
+            defaultValue={fullName ?? ''}
+            placeholder="Dit skønne fulde navn"
             maxLength={64}
           />
         </form>

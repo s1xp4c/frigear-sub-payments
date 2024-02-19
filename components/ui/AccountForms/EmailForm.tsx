@@ -29,12 +29,12 @@ export default function EmailForm({
 
   return (
     <Card
-      title="Your Email"
-      description="Please enter the email address you want to use to login."
+      title="Email"
+      description="Her er din frække email du bruger til login."
       footer={
         <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
           <p className="pb-4 sm:pb-0">
-            We will email you to verify the change.
+            Vi smider dig en mail du skal verificere ved ændring.
           </p>
           <Button
             variant="slim"
@@ -42,7 +42,7 @@ export default function EmailForm({
             form="emailForm"
             loading={isSubmitting}
           >
-            Update Email
+            Opdatér email
           </Button>
         </div>
       }
@@ -54,7 +54,7 @@ export default function EmailForm({
             name="newEmail"
             className="w-1/2 p-3 rounded-md bg-zinc-800"
             defaultValue={userEmail ?? ''}
-            placeholder="Your email"
+            placeholder="Din awesome email..."
             maxLength={64}
           />
         </form>

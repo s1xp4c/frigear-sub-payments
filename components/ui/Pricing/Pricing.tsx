@@ -196,7 +196,7 @@ const uniqueBillingIntervals: BillingInterval[] = Array.from(uniqueIntervalsSet)
                         {priceString}
                       </span>
                       <span className="text-base font-medium text-zinc-100">
-                        /{billingInterval.interval}
+                        /{translateInterval(billingInterval.interval, billingInterval.count)}
                       </span>
                     </p>
                     <Button
