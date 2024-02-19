@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Button from '@/components/ui/Button';
-import { useRouter, usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { createStripePortal } from '@/utils/stripe/server';
-import Link from 'next/link';
-import Card from '@/components/ui/Card';
-import { Tables } from '@/types_db';
-import { translateInterval } from '@/utils/translation/translateInterval';
+import Button from "@/components/ui/Button";
+import { useRouter, usePathname } from "next/navigation";
+import { useState } from "react";
+import { createStripePortal } from "@/utils/stripe/server";
+import Link from "next/link";
+import Card from "@/components/ui/Card";
+import { Tables } from "@/types_db";
+import { translateInterval } from "@/utils/translation/translateInterval";
 
-type Subscription = Tables<'subscriptions'>;
-type Price = Tables<'prices'>;
-type Product = Tables<'products'>;
+type Subscription = Tables<"subscriptions">;
+type Price = Tables<"prices">;
+type Product = Tables<"products">;
 
 type SubscriptionWithPriceAndProduct = Subscription & {
   prices:
@@ -32,10 +32,10 @@ export default function CustomerPortalForm({ subscription }: Props) {
 
   const subscriptionPrice =
     subscription &&
-    new Intl.NumberFormat('da-DK', {
-      style: 'currency',
+    new Intl.NumberFormat("da-DK", {
+      style: "currency",
       currency: subscription?.prices?.currency!,
-      minimumFractionDigits: 0
+      minimumFractionDigits: 0,
     }).format((subscription?.prices?.unit_amount || 0) / 100);
 
   const handleStripePortalRequest = async () => {
@@ -52,7 +52,7 @@ export default function CustomerPortalForm({ subscription }: Props) {
         subscription
           ? `Du er tilknyttet: \n 
            ${subscription?.prices?.products?.name} plan.`
-          : 'Du har ik´ valgt et medlemskab af Frigear endnu. '
+          : "Du har ik´ valgt et medlemskab af Frigear endnu. "
       }
       footer={
         <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
@@ -69,8 +69,7 @@ export default function CustomerPortalForm({ subscription }: Props) {
     >
       <div className="mt-8 mb-4 text-xl font-semibold">
         {subscription ? (
-          
-          `${subscriptionPrice} /${translateInterval(subscription?.prices?.interval as string, subscription?.prices?.interval_count as number)}`
+          `${subscriptionPrice} /${translateInterval(subscription?.prices?.interval as string, subscription?.prices?.interval_count as number)} {"\n *Betalingsgebyr er indeholdt i beløb"}`
         ) : (
           <Link href="/pricing">Vælg medlemskab</Link>
         )}
