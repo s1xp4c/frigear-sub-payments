@@ -50,7 +50,8 @@ export default function CustomerPortalForm({ subscription }: Props) {
       title="Medlemskab"
       description={
         subscription
-          ? `Du er tilknyttet: \n  ${subscription?.prices?.products?.name} plan.`
+          ? `Du er tilknyttet: \n 
+           ${subscription?.prices?.products?.name} plan.`
           : 'Du har ik´ valgt et medlemskab af Frigear endnu. '
       }
       footer={
@@ -68,7 +69,8 @@ export default function CustomerPortalForm({ subscription }: Props) {
     >
       <div className="mt-8 mb-4 text-xl font-semibold">
         {subscription ? (
-          `${subscriptionPrice}/${translateInterval(subscription?.prices?.interval as string, subscription?.prices?.interval_count as number)}`
+          
+          `${subscriptionPrice} /${translateInterval(subscription?.prices?.interval as string, subscription?.prices?.interval_count as number)}`
         ) : (
           <Link href="/pricing">Vælg medlemskab</Link>
         )}

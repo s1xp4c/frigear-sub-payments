@@ -35,23 +35,12 @@ export default async function Account() {
     <section className="mb-32 bg-black">
       <div className="max-w-6xl px-4 py-8 mx-auto sm:px-6 sm:pt-24 lg:px-8">
         <div className="sm:align-center sm:flex sm:flex-col">
-        {/* <Card
-          title="Dit medlemskab"
-          description={
-            subscription
-              ? `Du er tilknyttet: \n ${subscription?.prices?.products?.name}.`
-              : "Du har ikke valgt et medlemskab af Frigear endnu. Klik på medlemsportal"
-          }
-          footer={<ManageSubscriptionButton session={session} />}
-        >
-          <div className="mt-8 mb-4 text-xl font-semibold">
-            {subscription ? (
-              `${subscriptionPrice}/${subscription?.prices?.interval}`
-            ) : (
-              <Link href="/pricing">Vælg medlemskab</Link>
-            )}
-          </div>
-        </Card> */}
+        <p className="mt-8">
+                      <span className="text-5xl font-extrabold white">
+                       Konto
+                      </span>
+                
+                    </p>
         </div>
       </div>
       <div className="p-4">
