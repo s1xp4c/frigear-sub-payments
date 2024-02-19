@@ -74,7 +74,7 @@ export default function CustomerPortalForm({ subscription }: Props) {
           <Link href="/pricing">Vælg medlemskab</Link>
         )}
         <span className="text-xs text-zinc-500">
-          *Betalingsgebyr er indeholdt i beløb
+          {"\n *Betalingsgebyr er indeholdt i beløb"}
         </span>
       </div>
     </Card>
