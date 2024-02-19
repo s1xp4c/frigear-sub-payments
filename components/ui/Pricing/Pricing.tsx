@@ -42,8 +42,14 @@ type BillingInterval = {
 // """"""""""""""""""""""""""""""""""""""""""""""""""""""""//
 
 export default function Pricing({ user, products, subscription}: Props) {
-// First, create an array of all intervals from all products
-const intervals = products.flatMap(product =>
+
+   // Filter out only products with recurring prices for subscriptions
+   const subscriptionProducts = products.filter(product =>
+    product.prices.some(price => price.type === 'recurring')
+  );
+
+// Create an array of all intervals from all products
+const intervals = subscriptionProducts.flatMap(product =>
   product.prices.map(price => ({
     interval: price.interval,
     count: price.interval_count,
