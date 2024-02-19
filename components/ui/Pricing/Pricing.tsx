@@ -198,6 +198,9 @@ const uniqueBillingIntervals: BillingInterval[] = Array.from(uniqueIntervalsSet)
                       <span className="text-base font-medium text-zinc-100">
                         /{translateInterval(billingInterval.interval, billingInterval.count)}
                       </span>
+                      <span className="text-base font-small text-zinc-500">
+                        *Betalingsgebyr er indeholdt i prisen
+                      </span>
                     </p>
                     <Button
                       variant="slim"
@@ -206,7 +209,7 @@ const uniqueBillingIntervals: BillingInterval[] = Array.from(uniqueIntervalsSet)
                       onClick={() => handleStripeCheckout(price)}
                       className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-zinc-900"
                     >
-                      {subscription ? 'SKIFT TYPE' : 'BLIV MEDLEM'}
+                      {subscription ? 'SKIFT MEDLEMSKAB' : 'BLIV MEDLEM'}
                     </Button>
                   </div>
                 </div>
