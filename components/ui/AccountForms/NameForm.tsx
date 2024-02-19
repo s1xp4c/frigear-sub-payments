@@ -36,7 +36,7 @@ export default function NameForm({ fullName }: { fullName: string }) {
             form="nameForm"
             loading={isSubmitting}
           >
-            Opdatér fuldt navn
+            Opdatér navn
           </Button>
         </div>
       }
@@ -46,9 +46,9 @@ export default function NameForm({ fullName }: { fullName: string }) {
           <input
             type="text"
             name="fullName"
-            className="w-1/2 p-3 rounded-md bg-zinc-800 sm:w-full"
+            className="sm:w-1/2 p-3 rounded-md bg-zinc-800 w-full"
             defaultValue={fullName ?? ''}
-            placeholder="Dit skønne fulde navn"
+            placeholder="Dit skønne fulde navn..."
             maxLength={64}
           />
         </form>
