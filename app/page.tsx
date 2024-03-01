@@ -9,7 +9,7 @@ export default function home() {
       <div className="max-w-6xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-6">
         <div className="sm:flex sm:flex-col sm:align-center">
           <HeroSection></HeroSection>
-          <News />
+          {/* <News /> */}
           <EmailSection></EmailSection>
         </div>
       </div>
