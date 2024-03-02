@@ -51,6 +51,7 @@ const infoData: InfoData = {
     phone: "+45 000 069",
     address: ", Danmark",
   },
+
   socials: {
     instagram: "https://instagram.com/frigear",
     facebook: "https://facebook.com/frigear",

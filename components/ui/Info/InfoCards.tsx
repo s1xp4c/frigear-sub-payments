@@ -24,13 +24,8 @@ const InfoCards = () => {
         </motion.div>
       </div>
       {infoData.sections.map((section, index) => (
-        <Card
-          key={index}
-          title={section.header}
-          description={section.content}
-          children={undefined}
-        >
-          {/* Additional content can be conditionally rendered here if needed */}
+        <Card key={index} title={section.header} description={section.content}>
+          <></>
         </Card>
       ))}
 
