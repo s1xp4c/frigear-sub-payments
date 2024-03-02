@@ -71,8 +71,9 @@ const InfoCards = () => {
             </div>
           </div>
         }
-        children={undefined}
-      ></Card>
+      >
+        <></>
+      </Card>
     </div>
   );
 };
