@@ -28,39 +28,32 @@ const InfoCards = () => {
         </Card>
       ))}
 
-      <Card
-        title={infoData.contact.header}
-        footer={
-          <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center text-zinc-500">
-            <span>Fang os her:</span>
-            <div className="flex space-x-4 mt-4 sm:mt-0">
-              {/* Icons are wrapped in divs for alignment but act as buttons or links */}
-              <div
-                onClick={() =>
-                  window.open(`mailto:${infoData.contact.email}`, "_blank")
-                }
-                className="cursor-pointer"
-              >
-                <TbMailHeart className="text-2xl" />
-              </div>
-              <div
-                onClick={() =>
-                  window.open(infoData.socials.instagram, "_blank")
-                }
-                className="cursor-pointer"
-              >
-                <FaInstagram className="text-2xl" />
-              </div>
-              <div
-                onClick={() => window.open(infoData.socials.facebook, "_blank")}
-                className="cursor-pointer"
-              >
-                <FaFacebookF className="text-2xl" />
-              </div>
-            </div>
+      <Card title={infoData.contact.header}>
+        {/* For the contact card, instead of using `footer` prop for actionable icons, placing them directly as children */}
+        <div className="flex justify-between items-center text-2xl text-indigo-500">
+          {/* Interactive icons as previously setup, wrapped in divs for clickable actions */}
+          <div
+            onClick={() =>
+              window.open(`mailto:${infoData.contact.email}`, "_blank")
+            }
+            className="cursor-pointer"
+          >
+            <TbMailHeart className="text-2xl" />
           </div>
-        }
-      >
+          <div
+            onClick={() => window.open(infoData.socials.instagram, "_blank")}
+            className="cursor-pointer"
+          >
+            <FaInstagram className="text-2xl" />
+          </div>
+          <div
+            onClick={() => window.open(infoData.socials.facebook, "_blank")}
+            className="cursor-pointer"
+          >
+            <FaFacebookF className="text-2xl" />
+          </div>
+        </div>
+        {/* Maintaining an empty fragment as children if no additional content is to be passed */}
         <></>
       </Card>
     </div>
