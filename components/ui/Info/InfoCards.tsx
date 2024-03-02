@@ -4,14 +4,13 @@ import Card from "@/components/ui/Card/Card";
 import infoData from "@/utils/json-files/info";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { TbMailHeart } from "react-icons/tb";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import Logo_rf_bgr from "@/components/icons/Logo_rf_bgr";
 
 const InfoCards = () => {
   return (
     <div>
-      <div className="flex justify-center items-center ">
+      <div className="flex justify-center items-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -32,42 +31,32 @@ const InfoCards = () => {
       <Card
         title={infoData.contact.header}
         footer={
-          <div className="flex justify-between items-center text-2xl text-indigo-500">
-            <div className="flex-row flex">
-              email
-              <Link
-                aria-label={infoData.contact.email}
-                href={`mailto: ${infoData.contact.email}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-1 m-2"
+          <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center text-zinc-500">
+            <span>Fang os her:</span>
+            <div className="flex space-x-4 mt-4 sm:mt-0">
+              {/* Icons are wrapped in divs for alignment but act as buttons or links */}
+              <div
+                onClick={() =>
+                  window.open(`mailto:${infoData.contact.email}`, "_blank")
+                }
+                className="cursor-pointer"
               >
-                <TbMailHeart /> {/* Instagram icon */}
-              </Link>
-            </div>
-            <div className="flex-row flex">
-              instagram
-              <Link
-                aria-label={infoData.socials.instagram}
-                href={infoData.socials.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-1 m-2"
+                <TbMailHeart className="text-2xl" />
+              </div>
+              <div
+                onClick={() =>
+                  window.open(infoData.socials.instagram, "_blank")
+                }
+                className="cursor-pointer"
               >
-                <FaInstagram /> {/* Instagram icon */}
-              </Link>
-            </div>
-            <div className="flex-row flex">
-              facebook
-              <Link
-                aria-label={infoData.socials.facebook}
-                href={infoData.socials.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-1 m-2"
+                <FaInstagram className="text-2xl" />
+              </div>
+              <div
+                onClick={() => window.open(infoData.socials.facebook, "_blank")}
+                className="cursor-pointer"
               >
-                <FaFacebookF /> {/* Facebook icon */}
-              </Link>
+                <FaFacebookF className="text-2xl" />
+              </div>
             </div>
           </div>
         }
