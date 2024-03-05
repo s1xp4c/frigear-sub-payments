@@ -25,28 +25,22 @@ const InfoCards = () => {
           title={infoData.contact.header}
           footer={
             <div className="flex justify-between items-center text-2xl text-indigo-500">
-              <div
+              <TbMailHeart
+                className="text-2xl cursor-pointer"
                 onClick={() =>
                   window.open(`mailto:${infoData.contact.email}`, "_blank")
                 }
-                className="cursor-pointer"
-              >
-                <TbMailHeart className="text-2xl" />
-              </div>
-              <div
+              />
+              <FaInstagram
+                className="text-2xl cursor-pointer"
                 onClick={() =>
                   window.open(infoData.socials.instagram, "_blank")
                 }
-                className="cursor-pointer"
-              >
-                <FaInstagram className="text-2xl" />
-              </div>
-              <div
+              />
+              <FaFacebookF
+                className="text-2xl cursor-pointer"
                 onClick={() => window.open(infoData.socials.facebook, "_blank")}
-                className="cursor-pointer"
-              >
-                <FaFacebookF className="text-2xl" />
-              </div>
+              />
             </div>
           }
         ></InfoCard>

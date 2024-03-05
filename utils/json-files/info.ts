@@ -32,12 +32,12 @@ const infoData: InfoData = {
     {
       header: "Vores mission",
       content:
-        "Vores mission er at skabe, facilitere og støtte projekter, der fremmer innovation og kreativitet i samfundet ved at understøtte frivllig inklusion og samarbejde.",
+        "Vores mission er at skabe, facilitere og og bidrage til projekter, der fremmer innovation og kreativitet i samfundet ved at understøtte frivllig inklusion, medindflydelse og samarbejde.",
     },
     {
       header: "Om inklusion",
       content:
-        "Frigear er et åbent og inkluderende fælleskab hvor alle støtter op om hinanden og vores forskelligehder. Her er der ingen racer, herkomst, hudfarver, køn, seksualitet, alder eller politiske holdninger på dagsordenen. Vi er her for frivillighed og sammenholdet. I Frigear er alle velkomne",
+        "Frigear er et åbent og inkluderende fælleskab hvor alle støtter op om forenigen, hinanden og vores forskelligehder. Her er der ingen racer, herkomst, hudfarver, køn, seksualitet, alder eller politiske holdninger på dagsordenen. Vi er her for frivillighed og sammenholdet. I Frigear er alle velkomne",
     },
     {
       header: "Vores vision",
