@@ -53,8 +53,8 @@ const infoData: InfoData = {
   },
 
   socials: {
-    instagram: "https://instagram.com/frigear",
-    facebook: "https://facebook.com/frigear",
+    instagram: "https://instagram.com/frigear.nu/",
+    facebook: "https://facebook.com/frigear.nu/",
   },
 };
 
