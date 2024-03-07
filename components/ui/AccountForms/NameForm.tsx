@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
-import { updateName } from '@/utils/auth-helpers/server';
-import { handleRequest } from '@/utils/auth-helpers/client';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
+import { updateName } from "@/utils/auth-helpers/server";
+import { handleRequest } from "@/utils/auth-helpers/client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default function NameForm({ fullName }: { fullName: string }) {
+export default function NameForm({ userName }: { userName: string }) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
     // Check if the new name is the same as the old name
-    if (e.currentTarget.fullName.value === fullName) {
+    if (e.currentTarget.fullName.value === userName) {
       e.preventDefault();
       setIsSubmitting(false);
       return;
@@ -47,7 +47,7 @@ export default function NameForm({ fullName }: { fullName: string }) {
             type="text"
             name="fullName"
             className="sm:w-1/2 p-3 rounded-md bg-zinc-800 w-full"
-            defaultValue={fullName ?? ''}
+            defaultValue={userName}
             placeholder="Dit skønne fulde navn..."
             maxLength={64}
           />
