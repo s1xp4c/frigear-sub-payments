@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function NameForm({ userName }: { userName: string }) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const firstName = userName.split(" ")[0];
+  const firstName = userName.split(" ")[0] as string;
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
     // Check if the new name is the same as the old name
@@ -48,8 +48,8 @@ export default function NameForm({ userName }: { userName: string }) {
             type="text"
             name="fullName"
             className="sm:w-1/2 p-3 rounded-md bg-zinc-800 w-full"
-            defaultValue={userName}
-            placeholder={userName ? userName : `Dit skønne fulde navn...`}
+            defaultValue={userName ?? ""}
+            placeholder={`Dit skønne fulde navn...`}
             maxLength={64}
           />
         </form>
