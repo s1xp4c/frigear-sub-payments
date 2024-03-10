@@ -2,21 +2,28 @@ import CustomerPortalForm from "@/components/ui/AccountForms/CustomerPortalForm"
 import EmailForm from "@/components/ui/AccountForms/EmailForm";
 import NameForm from "@/components/ui/AccountForms/NameForm";
 import { createClient } from "@/utils/supabase/server";
-import { Users } from "lucide-react";
 import { redirect } from "next/navigation";
 
 export default async function Account() {
   const supabase = createClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // Attempt to get the current user
+  const { data: authData } = await supabase.auth.getUser();
+  const user = authData.user;
 
+  // Early redirect if no user is found
+  if (!user) {
+    return redirect("/signin");
+  }
+
+  // Now that user existence is confirmed, proceed to fetch userDetails
   const { data: userDetails } = await supabase
     .from("users")
     .select("*")
+    .eq("id", user.id) // user.id is now guaranteed to exist
     .single();
 
+  // Fetch subscription details
   const { data: subscription, error } = await supabase
     .from("subscriptions")
     .select("*, prices(*, products(*))")
@@ -25,10 +32,6 @@ export default async function Account() {
 
   if (error) {
     console.log(error);
-  }
-
-  if (!user) {
-    return redirect("/signin");
   }
 
   return (
@@ -44,7 +47,7 @@ export default async function Account() {
       </div>
       <div className="p-4">
         <CustomerPortalForm subscription={subscription} />
-        <NameForm userName={user.user_metadata.fullName ?? ""} />
+        <NameForm userName={userDetails?.full_name ?? ""} />
         <EmailForm userEmail={user.email} />
       </div>
     </section>
