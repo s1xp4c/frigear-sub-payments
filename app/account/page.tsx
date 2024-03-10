@@ -35,7 +35,7 @@ export default async function Account() {
       <div className="max-w-6xl px-4 py-8 mx-auto sm:px-6 sm:pt-24 lg:px-8">
         <div className="sm:align-center sm:flex sm:flex-col">
           <p className="mt-8">
-            <span className="text-5xl font-extrabold white sm:text-center">
+            <span className="text-5xl font-extrabold white text-center">
               Konto
             </span>
           </p>
