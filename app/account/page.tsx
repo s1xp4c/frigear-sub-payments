@@ -2,6 +2,7 @@ import CustomerPortalForm from "@/components/ui/AccountForms/CustomerPortalForm"
 import EmailForm from "@/components/ui/AccountForms/EmailForm";
 import NameForm from "@/components/ui/AccountForms/NameForm";
 import { createClient } from "@/utils/supabase/server";
+import { Users } from "lucide-react";
 import { redirect } from "next/navigation";
 
 export default async function Account() {
@@ -43,7 +44,7 @@ export default async function Account() {
       </div>
       <div className="p-4">
         <CustomerPortalForm subscription={subscription} />
-        <NameForm userName={userDetails?.full_name ?? ""} />
+        <NameForm userName={user.user_metadata.fullName ?? ""} />
         <EmailForm userEmail={user.email} />
       </div>
     </section>
