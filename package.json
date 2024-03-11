@@ -1,6 +1,6 @@
 {
   "name": "frigear-app",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "developer": "Morten Six",
   "scripts": {
@@ -10,13 +10,8 @@
     "start": "next start",
     "lint": "next lint",
     "prettier-fix": "prettier --write .",
-    "stripe:listen": "stripe listen --forward-to=localhost:3000/api/webhooks --project-name=frigear-app",
-    "stripe:fixtures": "stripe fixtures fixtures/stripe-fixtures.json --project-name=frigear-app",
-    "supabase:start": "npx supabase start",
-    "supabase:link": "node supabase/link.js",
-    "supabase:generate-types": "npx supabase gen types typescript --local --schema public > types_db.ts",
-    "supabase:generate-migration": "npx supabase db diff | npx supabase migration new update",
-    "supabase:migrate": "npx supabase migration up --linked"
+    "stripe:listen": "stripe listen --forward-to=https://frigear.nu/api/webhooks --project-name=frigear-app",
+    "generate-types": "npx supabase gen types typescript --project-id gpjtxflgdyedoqjlmwup --schema public > types_db.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
