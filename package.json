@@ -13,6 +13,9 @@
     "stripe:listen": "stripe listen --forward-to=https://frigear.nu/api/webhooks --project-name=frigear-app",
     "generate-types": "npx supabase gen types typescript --project-id gpjtxflgdyedoqjlmwup --schema public > types_db.ts"
   },
+  "bin": {
+    "supabase": "bin/supabase"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@marsidev/react-turnstile": "^0.4.1",
