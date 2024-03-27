@@ -15,7 +15,7 @@ import Logo_purple from "../icons/Logo_purple";
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : "";
+  : "http://localhost:3000/";
 
 interface ContactEmailProps {
   name: string | any;
@@ -41,9 +41,7 @@ export const ContactEmail = ({
         <Preview>{previewText}</Preview>
         <Body style={main}>
           <Container style={container}>
-            <Logo_purple
-              
-            />
+            <Logo_purple />
             <Heading style={h1}>
               {"Mail fra:"} {name}
             </Heading>
