@@ -46,6 +46,7 @@ export interface Database {
           trial_period_days: number | null;
           type: Database["public"]["Enums"]["pricing_type"] | null;
           unit_amount: number | null;
+          metadata: Json | null;
         };
         Insert: {
           active?: boolean | null;
@@ -56,7 +57,8 @@ export interface Database {
           product_id?: string | null;
           trial_period_days?: number | null;
           type?: Database["public"]["Enums"]["pricing_type"] | null;
-          unit_amount?: number | null;
+          unit_amount?: number | null;          
+          metadata?: Json | null;
         };
         Update: {
           active?: boolean | null;
@@ -68,6 +70,7 @@ export interface Database {
           trial_period_days?: number | null;
           type?: Database["public"]["Enums"]["pricing_type"] | null;
           unit_amount?: number | null;
+          metadata?: Json | null;
         };
         Relationships: [
           {

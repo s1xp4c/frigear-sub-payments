@@ -37,7 +37,7 @@ const infoData: InfoData = {
     {
       header: "Om inklusion",
       content:
-        "Frigear er et åbent og inkluderende fælleskab hvor alle støtter op om forenigen, hinanden og vores forskelligehder. Her er der ingen racer, herkomst, hudfarver, køn, seksualitet, alder eller politiske holdninger på dagsordenen. Vi er her for frivillighed og sammenholdet. I Frigear er alle velkomne",
+        "Frigear er et åbent og inkluderende fælleskab hvor alle støtter op om foreningen, hinanden og vores forskelligehder. Her er der ingen racer, herkomst, hudfarver, køn, seksualitet, alder eller politiske holdninger på dagsordenen. Vi er her for frivillighed og sammenhold. I Frigear er alle velkomne.",
     },
     {
       header: "Vores vision",

@@ -51,6 +51,7 @@ const upsertPriceRecord = async (
     interval: price.recurring?.interval ?? null,
     interval_count: price.recurring?.interval_count ?? null,
     trial_period_days: price.recurring?.trial_period_days ?? TRIAL_PERIOD_DAYS,
+    metadata: price.metadata,
   };
 
   const { error: upsertError } = await supabaseAdmin
@@ -214,6 +215,9 @@ const manageSubscriptionStatusChange = async (
   customerId: string,
   createAction = false,
 ) => {
+  console.log(
+    `Started managing subscription status change for ${subscriptionId}`,
+  );
   // Get customer's UUID from mapping table.
   const { data: customerData, error: noCustomerError } = await supabaseAdmin
     .from("customers")
@@ -229,6 +233,9 @@ const manageSubscriptionStatusChange = async (
   const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
     expand: ["default_payment_method"],
   });
+  console.log(
+    `Operation ID-Retrieve completed successfully for ${subscriptionId}`,
+  );
   // Upsert the latest status of the subscription object.
   const subscriptionData: TablesInsert<"subscriptions"> = {
     id: subscription.id,
@@ -263,7 +270,9 @@ const manageSubscriptionStatusChange = async (
       ? toDateTime(subscription.trial_end).toISOString()
       : null,
   };
-
+  console.log(
+    `Operation subscriptionData Insert completed successfully for ${subscriptionId}, ${uuid}`,
+  );
   const { error: upsertError } = await supabaseAdmin
     .from("subscriptions")
     .upsert([subscriptionData]);

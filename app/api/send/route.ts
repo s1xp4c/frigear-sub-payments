@@ -38,19 +38,13 @@ export async function POST(req: Request) {
       },
       {
         status: 200,
-      }
+      },
     );
   } catch (e: unknown) {
-    if (e instanceof Error) {
-      console.log(`Failed to send email: ${e.message}`);
-    }
+    console.error("Error sending email:", e);
     return NextResponse.json(
-      {
-        error: "Intern server fejl! - Kontakt support",
-      },
-      {
-        status: 500,
-      }
+      { error: "Intern server fejl! - Kontakt support" },
+      { status: 500 },
     );
   }
 }
