@@ -27,7 +27,7 @@ export default function NameForm({ userName }: { userName: string }) {
   return (
     <Card
       title={`Fuldt navn`}
-      description={`Her er dit smækre fulde navn ${firstName}. Du kan opdatere det hvis du vil, men vi bruger det kun til at finde dig i vrimlen og det vises ikke offenligt.`}
+      description={`Her er dit smækre navn ${firstName}. Du kan opdatere det hvis du vil, men vi bruger det kun til at finde dig i vrimlen og det vises ikke offenligt.`}
       footer={
         <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
           <p className="pb-4 sm:pb-0">Max 64 karakterer</p>
