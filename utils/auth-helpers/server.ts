@@ -3,8 +3,8 @@
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { getURL, getErrorRedirect, getStatusRedirect } from "utils/helpers";
-import { getAuthTypes } from "utils/auth-helpers/settings";
+import { getURL, getErrorRedirect, getStatusRedirect } from "@/utils/helpers";
+import { getAuthTypes } from "@/utils/auth-helpers/settings";
 
 function isValidEmail(email: string) {
   var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -153,7 +153,11 @@ export async function signInWithPassword(formData: FormData) {
     cookieStore.set("preferredSignInView", "password_signin", {
       path: "/account/",
     });
-    redirectPath = getStatusRedirect("/", "Succes!", "Du er nu logget ind.");
+    redirectPath = getStatusRedirect(
+      "/account/",
+      "Succes!",
+      "Du er nu logget ind.",
+    );
   } else {
     redirectPath = getErrorRedirect(
       "/signin/password_signin",

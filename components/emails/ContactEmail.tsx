@@ -13,9 +13,9 @@ import {
 import * as React from "react";
 import Logo_purple from "../icons/Logo_purple";
 
-// const baseUrl = process.env.VERCEL_URL
-//   ? `https://${process.env.VERCEL_URL}`
-//   : "";
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "";
 
 interface ContactEmailProps {
   name: string | any;

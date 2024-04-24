@@ -4,8 +4,8 @@
 
 | Version | Supporterede       |
 | ------- | ------------------ |
-| = 0.2.3 | :white_check_mark: |
-| < 2.0.0 | :x:                |
+| > 0.2.4 | :white_check_mark: |
+| < 0.2.0 | :x:                |
 
 ## Sådan her rapporterer du et problem, hvis du mener du har fundet et sikkerhedsbrist i vores systemer:
 
@@ -23,7 +23,7 @@ Dokumentér problemet.
 
 | Version | Supporterede                                   |
 | ------- | ---------------------------------------------- |
-| 0.0.6   | :white_check_mark: Pt. ingen rapporterede fejl |
-| < 0.5   | :x: Bug: Kontakt form sender ikke content med  |
+| > 0.0.6 | :white_check_mark: Pt. ingen rapporterede fejl |
+| < 0.0.5 | :x: Bug: Kontakt form sender ikke content med  |
 
 ##ℹ️ Se mere om GDPR, og hvordan vi håndterer dine data og brugerrettigheder i Appen: https://frigear.nu/

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import InfoCards from "@/components/ui/Info/InfoCards"; // Adjust the import path as necessary
+import InfoCards from "@/components/ui/Info/InfoCards";
 
 const InfoPage = () => {
   return (

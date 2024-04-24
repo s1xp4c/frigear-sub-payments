@@ -4,12 +4,12 @@ const allowEmail = true;
 const allowPassword = true;
 
 // Boolean toggle to determine whether auth interface should route through server or client
-// (Currently set to false because screen sometimes flickers with server redirects)
-const allowServerRedirect = false;
+// (set to false if screen flickers with server redirects)
+const allowServerRedirect = true;
 
 // Check that at least one of allowPassword and allowEmail is true
 if (!allowPassword && !allowEmail)
-  throw new Error('At least one of allowPassword and allowEmail must be true');
+  throw new Error("At least one of allowPassword and allowEmail must be true");
 
 export const getAuthTypes = () => {
   return { allowOauth, allowEmail, allowPassword };
@@ -19,15 +19,15 @@ export const getViewTypes = () => {
   // Define the valid view types
   let viewTypes: string[] = [];
   if (allowEmail) {
-    viewTypes = [...viewTypes, 'email_signin'];
+    viewTypes = [...viewTypes, "email_signin"];
   }
   if (allowPassword) {
     viewTypes = [
       ...viewTypes,
-      'password_signin',
-      'forgot_password',
-      'update_password',
-      'signup'
+      "password_signin",
+      "forgot_password",
+      "update_password",
+      "signup",
     ];
   }
 
@@ -36,7 +36,7 @@ export const getViewTypes = () => {
 
 export const getDefaultSignInView = (preferredSignInView: string | null) => {
   // Define the default sign in view
-  let defaultView = allowPassword ? 'password_signin' : 'email_signin';
+  let defaultView = allowPassword ? "password_signin" : "email_signin";
   if (preferredSignInView && getViewTypes().includes(preferredSignInView)) {
     defaultView = preferredSignInView;
   }
@@ -45,5 +45,5 @@ export const getDefaultSignInView = (preferredSignInView: string | null) => {
 };
 
 export const getRedirectMethod = () => {
-  return allowServerRedirect ? 'server' : 'client';
+  return allowServerRedirect ? "server" : "client";
 };
