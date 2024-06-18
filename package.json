@@ -56,7 +56,7 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.161.0",
     "utf-8-validate": "^5.0.10",
-    "ws": "^8.16.0",
+    "ws": "^8.17.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
