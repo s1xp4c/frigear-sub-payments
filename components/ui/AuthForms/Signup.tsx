@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
 // import { useTranslation } from 'next-i18next';
-import Button from '@/components/ui/Button';
-import React from 'react';
-import Link from 'next/link';
-import { signUp } from '@/utils/auth-helpers/server';
-import { handleRequest } from '@/utils/auth-helpers/client';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import Button from "@/components/ui/Button";
+import React from "react";
+import Link from "next/link";
+import { signUp } from "@/utils/auth-helpers/server";
+import { handleRequest } from "@/utils/auth-helpers/client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 // Define prop type with allowEmail boolean
 interface SignUpProps {
@@ -25,8 +25,8 @@ export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true); // Disable the button while the request is being handled
-    if (redirectMethod === 'client') {
-    await handleRequest(e, signUp, router);
+    if (redirectMethod === "client") {
+      await handleRequest(e, signUp, router);
     }
     setIsSubmitting(false);
   };
@@ -41,11 +41,11 @@ export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
       >
         <div className="grid gap-4">
           <div className="grid gap-2">
-            <label htmlFor="email">{'Email'}</label>
+            <label htmlFor="email">{"Email"}</label>
             {/* <label htmlFor="email">{t('signin.email_label')}</label> */}
             <input
               id="email"
-              placeholder={'Din awesome email...'}
+              placeholder={"Din awesome email..."}
               // placeholder={t('signin.email_placeholder')}
               type="email"
               name="email"
@@ -54,11 +54,11 @@ export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
               autoCorrect="off"
               className="w-full p-3 rounded-md bg-zinc-800"
             />
-           <label htmlFor="password">{'Password'}</label>
-           {/* <label htmlFor="password">{t('signin.password_label')}</label> */}
+            <label htmlFor="password">{"Password"}</label>
+            {/* <label htmlFor="password">{t('signin.password_label')}</label> */}
             <input
               id="password"
-              placeholder={'Dit mega svære password...'}
+              placeholder={"Dit mega svære password..."}
               // placeholder={t('signin.password_placeholder')}
               type="password"
               name="password"
@@ -72,12 +72,12 @@ export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
             className="mb-3"
             loading={isSubmitting}
           >
-           OPRET
+            OPRET
           </Button>
         </div>
       </form>
-      <p className='mb-4'>Har du allerede en konto?</p>
-      <p className='mb-1'>
+      <p className="mb-4">Har du allerede en konto?</p>
+      <p className="mb-1">
         <Link href="/signin/password_signin" className="font-light text-sm ">
           Log ind med email og password.
         </Link>

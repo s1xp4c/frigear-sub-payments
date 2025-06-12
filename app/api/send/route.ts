@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import ContactEmail from "../../../components/emails/ContactEmail";
 import * as z from "zod";
 import { NextResponse } from "next/server";
-import {render} from '@react-email/components'
+import { render } from "@react-email/components";
 
 const sendRouteSchema = z.object({
   name: z.string().min(3),
@@ -25,13 +25,15 @@ export async function POST(req: Request) {
       to: [contactEmail],
       subject: subject,
       reply_to: emailAddress,
-      html: render(ContactEmail({
-        name,
-        emailAddress,
-        subject,
-        phoneNumber,
-        content,
-      }))
+      html: render(
+        ContactEmail({
+          name,
+          emailAddress,
+          subject,
+          phoneNumber,
+          content,
+        }),
+      ),
     });
     return NextResponse.json(
       {

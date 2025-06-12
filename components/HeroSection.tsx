@@ -71,9 +71,7 @@ const HeroSection = () => {
           className="col-span-4 place-self-center mt-4 lg:mt-0"
         >
           <div className="rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[350px] lg:h-[350px] relative">
-            <Logo_rf_bgr
-             className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-full"
-            />
+            <Logo_rf_bgr className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 rounded-full" />
           </div>
         </motion.div>
       </div>

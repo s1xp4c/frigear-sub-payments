@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Button from '@/components/ui/Button';
-import Link from 'next/link';
-import { signInWithEmail } from '@/utils/auth-helpers/server';
-import { handleRequest } from '@/utils/auth-helpers/client';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import Button from "@/components/ui/Button";
+import Link from "next/link";
+import { signInWithEmail } from "@/utils/auth-helpers/server";
+import { handleRequest } from "@/utils/auth-helpers/client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 // Define prop type with allowPassword boolean
 interface EmailSignInProps {
@@ -17,7 +17,7 @@ interface EmailSignInProps {
 export default function EmailSignIn({
   allowPassword,
   redirectMethod,
-  disableButton
+  disableButton,
 }: EmailSignInProps) {
   const router = useRouter();
   // const router = redirectMethod === 'client' ? useRouter() : null;
@@ -25,8 +25,8 @@ export default function EmailSignIn({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true); // Disable the button while the request is being handled
-    if (redirectMethod === 'client') {
-    await handleRequest(e, signInWithEmail, router);
+    if (redirectMethod === "client") {
+      await handleRequest(e, signInWithEmail, router);
     }
     setIsSubmitting(false);
   };

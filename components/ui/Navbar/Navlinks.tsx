@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { SignOut } from '@/utils/auth-helpers/server';
-import { handleRequest } from '@/utils/auth-helpers/client';
-import Logo from '@/components/icons/Logo';
-import { usePathname, useRouter } from 'next/navigation';
-import { getRedirectMethod } from '@/utils/auth-helpers/settings';
-import s from './Navbar.module.css';
+import Link from "next/link";
+import { SignOut } from "@/utils/auth-helpers/server";
+import { handleRequest } from "@/utils/auth-helpers/client";
+import Logo from "@/components/icons/Logo";
+import { usePathname, useRouter } from "next/navigation";
+import { getRedirectMethod } from "@/utils/auth-helpers/settings";
+import s from "./Navbar.module.css";
 
 interface NavlinksProps {
   user?: any;
@@ -18,7 +18,7 @@ export default function Navlinks({ user }: NavlinksProps) {
   const pathname = usePathname();
 
   // Perform conditional checks or actions here, using the `router` and `pathname` as needed.
-  const isClientSideRouting = getRedirectMethod() === 'client';
+  const isClientSideRouting = getRedirectMethod() === "client";
 
   return (
     <div className="relative flex flex-row justify-between py-4 align-center md:py-6">
@@ -39,7 +39,11 @@ export default function Navlinks({ user }: NavlinksProps) {
       </div>
       <div className="flex justify-end space-x-8">
         {user ? (
-           <form onSubmit={(e) => handleRequest(e, SignOut, isClientSideRouting ? router : null)}>
+          <form
+            onSubmit={(e) =>
+              handleRequest(e, SignOut, isClientSideRouting ? router : null)
+            }
+          >
             <input type="hidden" name="pathName" value={pathname} />
             <button type="submit" className={s.link}>
               LOG UD

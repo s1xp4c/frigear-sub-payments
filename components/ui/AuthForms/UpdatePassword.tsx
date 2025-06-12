@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Button from '@/components/ui/Button';
-import { updatePassword } from '@/utils/auth-helpers/server';
-import { handleRequest } from '@/utils/auth-helpers/client';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import Button from "@/components/ui/Button";
+import { updatePassword } from "@/utils/auth-helpers/server";
+import { handleRequest } from "@/utils/auth-helpers/client";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 interface UpdatePasswordProps {
   redirectMethod: string;
 }
 
 export default function UpdatePassword({
-  redirectMethod
+  redirectMethod,
 }: UpdatePasswordProps) {
   // const router = redirectMethod === 'client' ? useRouter() : null;
   const router = useRouter();
@@ -19,8 +19,8 @@ export default function UpdatePassword({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true); // Disable the button while the request is being handled
-    if (redirectMethod === 'client') {
-    await handleRequest(e, updatePassword, router);
+    if (redirectMethod === "client") {
+      await handleRequest(e, updatePassword, router);
     }
     setIsSubmitting(false);
   };
