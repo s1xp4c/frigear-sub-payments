@@ -153,7 +153,11 @@ export async function signInWithPassword(formData: FormData) {
     cookieStore.set("preferredSignInView", "password_signin", {
       path: "/account",
     });
-    redirectPath = getStatusRedirect("/account", "Succes!", "Du er nu logget ind.");
+    redirectPath = getStatusRedirect(
+      "/account",
+      "Succes!",
+      "Du er nu logget ind.",
+    );
   } else {
     redirectPath = getErrorRedirect(
       "/signin/password_signin",

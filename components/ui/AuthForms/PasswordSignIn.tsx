@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Button from '@/components/ui/Button';
-import Link from 'next/link';
-import { signInWithPassword } from '@/utils/auth-helpers/server';
-import { handleRequest } from '@/utils/auth-helpers/client';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import Button from "@/components/ui/Button";
+import Link from "next/link";
+import { signInWithPassword } from "@/utils/auth-helpers/server";
+import { handleRequest } from "@/utils/auth-helpers/client";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 // import { useTranslation } from 'next-i18next';
 
 // Define prop type with allowEmail boolean
@@ -16,7 +16,7 @@ interface PasswordSignInProps {
 
 export default function PasswordSignIn({
   allowEmail,
-  redirectMethod
+  redirectMethod,
 }: PasswordSignInProps) {
   // const { t } = useTranslation('auth');
   // const router = redirectMethod === 'client' ? useRouter() : null;
@@ -25,8 +25,8 @@ export default function PasswordSignIn({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true); // Disable the button while the request is being handled
-    if (redirectMethod === 'client') {
-    await handleRequest(e, signInWithPassword, router);
+    if (redirectMethod === "client") {
+      await handleRequest(e, signInWithPassword, router);
     }
     setIsSubmitting(false);
   };
@@ -40,11 +40,11 @@ export default function PasswordSignIn({
       >
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <label htmlFor="email">{'Email'}</label>
+            <label htmlFor="email">{"Email"}</label>
             {/* <label htmlFor="email">{t('signin.email_label')}</label> */}
             <input
               id="email"
-              placeholder={'Din najs email...'}
+              placeholder={"Din najs email..."}
               // placeholder={t('signin.email_placeholder')}
 
               type="email"
