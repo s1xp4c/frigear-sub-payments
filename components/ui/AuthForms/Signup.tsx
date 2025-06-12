@@ -36,6 +36,7 @@ export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
       <form
         noValidate={true}
         className="mb-4"
+        method="POST"
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="grid gap-4">
