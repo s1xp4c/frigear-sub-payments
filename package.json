@@ -4,7 +4,7 @@
   "license": "MIT",
   "developer": "Morten Six",
   "scripts": {
-    "dev": "vercel env pull && next dev --turbo",
+    "dev": "vercel env pull && next dev",
     "email": "email dev --dir components/emails",
     "build": "next build",
     "start": "next start",
