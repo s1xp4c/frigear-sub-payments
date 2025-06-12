@@ -11,11 +11,7 @@ import {
   Hr,
 } from "@react-email/components";
 import * as React from "react";
-import Logo_purple from "../icons/Logo_purple";
-
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "";
+// import Logo_purple from "../icons/Logo_purple";
 
 interface ContactEmailProps {
   name: string | any;
@@ -41,7 +37,7 @@ export const ContactEmail = ({
         <Preview>{previewText}</Preview>
         <Body style={main}>
           <Container style={container}>
-            <Logo_purple />
+            {/*<Logo_purple />*/}
 
             <Heading style={h1}>
               {"Mail fra:"} {name}
