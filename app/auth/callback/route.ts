@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
         getStatusRedirect(
             `${requestUrl.origin}/pricing`,
             "Succes!",
-            "Her er din konto.",
+            "Her kan du vælge dit medlemsskab.",
         ),
     );
 }
