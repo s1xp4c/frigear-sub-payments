@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   react-email@2.0.0:
-    hash: fcd9c26d1fbea56e450566217228e29762f1d82d8f220b6048f9c1f45f722aeb
+    hash: ejzk7s2rqd2w4dwto7ybrq7nnu
     path: patches/react-email@2.0.0.patch
 
 importers:
