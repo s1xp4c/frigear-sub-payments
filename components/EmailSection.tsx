@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
-// import { FaYoutubeSquare } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -84,15 +84,24 @@ const EmailSection = () => {
           Tjek vores SoMe mens du venter 🐼
         </p>
         <div className="socials flex flex-row gap-2">
-          <Link href="https://instagram.com/frigear.nu" target="_blank">
+          <Link
+            href="https://www.instagram.com/frigear.nu/?viewAsMember=true"
+            target="_blank"
+          >
             <FaInstagramSquare className="w-10 h-10" />
           </Link>
-          <Link href="https://www.facebook.com/Frigear.nu" target="_blank">
+          <Link
+            href="https://www.facebook.com/Frigear.nu/?viewAsMember=true"
+            target="_blank"
+          >
             <FaFacebookSquare className="w-10 h-10" />
           </Link>
-          {/* <Link href="https://youtube.com" target="_blank">
-            <FaYoutubeSquare className="w-10 h-10" />
-          </Link> */}
+          <Link
+            href="https://www.linkedin.com/company/frigear/?viewAsMember=true"
+            target="_blank"
+          >
+            <FaLinkedin className="w-10 h-10" />
+          </Link>
         </div>
       </div>
       <div>
@@ -102,14 +111,14 @@ const EmailSection = () => {
               htmlFor="name"
               className="text-white block mb-2 text-sm font-medium"
             >
-              Dit seje navn
+              Navn...
             </label>
             <input
               type="text"
               id="name"
               required
               className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-              placeholder="Hei, hvad hedder du? . . put her"
+              placeholder="Hei, hvad hedder du? . . put her!"
               {...register("name")}
             />
 
@@ -124,7 +133,7 @@ const EmailSection = () => {
               htmlFor="phone"
               className="text-white block mb-2 text-sm font-medium"
             >
-              Dit fon nummer
+              Fon-nummer...
             </label>
             <input
               type="tel"
@@ -145,14 +154,14 @@ const EmailSection = () => {
               htmlFor="email"
               className="text-white block mb-2 text-sm font-medium"
             >
-              Din email
+              Email...
             </label>
             <input
               type="email"
               id="email"
               required
               className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-              placeholder="volunteerHero@someDomain.lol"
+              placeholder="volunteer-hero@fjollet-domæne.lol"
               {...register("email")}
             />
 
@@ -167,7 +176,7 @@ const EmailSection = () => {
               htmlFor="subject"
               className="text-white block text-sm mb-2 font-medium"
             >
-              Emne
+              Emne...
             </label>
             <input
               type="text"
@@ -189,7 +198,7 @@ const EmailSection = () => {
               htmlFor="message"
               className="text-white block text-sm mb-2 font-medium"
             >
-              Besked
+              Besked...
             </label>
             <textarea
               id="message"
