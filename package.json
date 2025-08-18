@@ -60,7 +60,6 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@types/minimatch": "^6.0.0",
     "@types/node": "^20.19.11",
     "@types/react": "^18.3.23",
     "autoprefixer": "^10.4.21",
