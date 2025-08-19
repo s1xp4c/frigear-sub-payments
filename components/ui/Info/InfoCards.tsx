@@ -2,7 +2,7 @@
 import React from "react";
 import InfoCard from "./infoCard";
 import infoData from "@/utils/json-files/info";
-import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import { FaInstagram, FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { TbMailHeart } from "react-icons/tb";
 
 import AnimateHeroLogo from "../AnimateHeroLogo/AnimateHeroLogo";
@@ -40,6 +40,10 @@ const InfoCards = () => {
               <FaFacebookF
                 className="text-2xl cursor-pointer"
                 onClick={() => window.open(infoData.socials.facebook, "_blank")}
+              />
+              <FaLinkedin
+                className="text-2xl cursor-pointer"
+                onClick={() => window.open(infoData.socials.linkedin, "_blank")}
               />
             </div>
           }
