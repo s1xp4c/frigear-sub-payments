@@ -14,6 +14,7 @@ interface ContactInfo {
 interface SocialLinks {
   instagram: string;
   facebook: string;
+  linkedin: string;
 }
 
 interface InfoData {
@@ -48,13 +49,14 @@ const infoData: InfoData = {
   contact: {
     header: "Kontakt Frigear",
     email: "kontakt@frigear.nu",
-    phone: "+45 000 069",
-    address: ", Danmark",
+    phone: "+45 42 666 239",
+    address: "København, Danmark",
   },
 
   socials: {
-    instagram: "https://instagram.com/frigear.nu/",
-    facebook: "https://facebook.com/frigear.nu/",
+    instagram: "https://instagram.com/frigear.nu/?viewAsMember=true",
+    facebook: "https://facebook.com/frigear.nu/?viewAsMember=true",
+    linkedin: "https://linkedin.com/company/frigear-nu/?viewAsMember=true",
   },
 };
 

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FaInstagramSquare } from "react-icons/fa";
+import { FaInstagramSquare, FaLinkedin } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 // import { FaYoutubeSquare } from "react-icons/fa";
 
@@ -84,15 +84,24 @@ const EmailSection = () => {
           Tjek vores SoMe mens du venter 🐼
         </p>
         <div className="socials flex flex-row gap-2">
-          <Link href="https://instagram.com/frigear.nu" target="_blank">
+          <Link
+            href="https://instagram.com/frigear.nu/?viewAsMember=true"
+            target="_blank"
+          >
             <FaInstagramSquare className="w-10 h-10" />
           </Link>
-          <Link href="https://www.facebook.com/Frigear.nu" target="_blank">
+          <Link
+            href="https://www.facebook.com/Frigear.nu/?viewAsMember=true"
+            target="_blank"
+          >
             <FaFacebookSquare className="w-10 h-10" />
           </Link>
-          {/* <Link href="https://youtube.com" target="_blank">
-            <FaYoutubeSquare className="w-10 h-10" />
-          </Link> */}
+          <Link
+            href="https://linkedin.com/company/frigear-nu/?viewAsMember=true"
+            target="_blank"
+          >
+            <FaLinkedin className="w-10 h-10" />
+          </Link>
         </div>
       </div>
       <div>
