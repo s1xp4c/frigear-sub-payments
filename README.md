@@ -11,28 +11,29 @@ An all-in-one high-performance SaaS application.
 
 > Want to support this open source volunteer project? Contact us here: [Frigear App](https://frigear.nu)
 
-## Local development
+## Development
 
 When you use the local supabase instance, you need to have [Docker](https://www.docker.com/) installed, and fill the
 database yourself.
 
-### Using local supabase instance:
+### Prerequisites
 
 1. `git clone https://github.com/s1xp4ck/frigear-sub-payments.git`
 2. `cd frigear-sub-payments`
-3. `pnpm i`
-4. `pnpm supabase start` <small>(you might have to update the supabase anon key in the .env.local file after)</small>
-5. `cp .env.example .env.local`
-6. `pnpm dev`
-7. Open [http://localhost:3000](http://localhost:3000) in your browser.
+3. `nvm use` <small>(ensures you use the correct version of node)</small>
+4. `pnpm i`
+
+### Using local supabase instance:
+
+1. `pnpm supabase start` <small>(you might have to update the supabase anon key in the .env.local file after)</small>
+2. `cp .env.example .env.local`
+3. `pnpm dev`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Using production database:
 
-1. `git clone https://github.com/s1xp4ck/frigear-sub-payments.git`
-2. `cd frigear-sub-payments`
-3. `pnpm i`
-4. `pnpm vercel env pull` <small>(you might have to sign in and choose the project)</small>
-5. `pnpm dev`
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+1. `pnpm vercel env pull` <small>(you might have to sign in and choose the project)</small>
+2. `pnpm dev`
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 > **Note**: You will have to do `pnpm vercel env pull` or create the `.env.local` file before you can run the project.
