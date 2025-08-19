@@ -12,3 +12,15 @@ An all-in-one high-performance SaaS application.
 # Want to support this open source volunteer project? - Use the contact form through the webapp here:
 
 - [Frigear App][https://frigear.nu]
+
+
+
+# Local development
+
+1. `git clone https://github.com/s1xp4ck/frigear-sub-payments.git`
+2. `cd frigear-sub-payments`
+3. `pnpm i`
+4. `pnpm vercel env pull` (you might have to sign in and choose the project)
+5. `pnpm supabase start`
+6. `pnpm dev`
+5. Open `http://localhost:3000` in your browser.`
